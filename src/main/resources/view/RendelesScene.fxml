@@ -36,7 +36,7 @@
                   <Insets left="10.0" top="1.0" />
                </HBox.margin>
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/extraextra.jpg" />
+                  <Image url="@../images/extraextra.jpg" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Extra: ">
@@ -69,7 +69,7 @@
                   <Insets left="10.0" top="1.0" />
                </HBox.margin>
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/gombas.png" />
+                  <Image url="@../images/gombas.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gombás: ">
@@ -102,7 +102,7 @@
                   <Insets left="10.0" top="1.0" />
                </HBox.margin>
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/extra.png" />
+                  <Image url="@../images/extra.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Olaszos: ">
@@ -135,7 +135,7 @@
                   <Insets left="10.0" top="1.0" />
                </HBox.margin>
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/szalami.png" />
+                  <Image url="@../images/szalami.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" Szalámis: ">
@@ -168,7 +168,7 @@
                   <Insets left="10.0" top="1.0" />
                </HBox.margin>
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/vegetarianusjpg.jpg" />
+                  <Image url="@../images/vegetarianusjpg.jpg" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Vega: ">

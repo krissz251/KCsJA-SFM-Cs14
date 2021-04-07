@@ -70,7 +70,7 @@
             <Separator prefWidth="200.0" style="-fx-border-color: #DAA520; -fx-border-width: 1;" />
             <ImageView fitHeight="127.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/alap.png" />
+                  <Image url="@../images/alap.png" />
                </image>
                <VBox.margin>
                   <Insets left="50.0" top="100.0" />
@@ -99,7 +99,7 @@
             <Separator prefWidth="200.0" style="-fx-border-color: #DAA520; -fx-border-width: 1;" />
             <ImageView fitHeight="165.0" fitWidth="273.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/alap.png" />
+                  <Image url="@../images/alap.png" />
                </image>
                <VBox.margin>
                   <Insets left="30.0" top="70.0" />
@@ -125,7 +125,7 @@
             <Separator prefWidth="200.0" style="-fx-border-color: #DAA520; -fx-border-width: 1;" />
             <ImageView fitHeight="219.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../PizzaPlanet/alap.png" />
+                  <Image url="@../images/alap.png" />
                </image>
                <VBox.margin>
                   <Insets top="40.0" />

@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="60.0" layoutY="94.0" pickOnBounds="true" rotate="-90.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="94.0">
          <image>
-            <Image url="@../../../../../../../PizzaPlanet/rendeles.jpeg" />
+            <Image url="@../images/rendeles.jpeg" />
          </image>
          <viewport>
             <Rectangle2D />
@@ -21,7 +21,7 @@
       </ImageView>
       <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="451.0" layoutY="94.0" pickOnBounds="true" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="434.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="94.0">
          <image>
-            <Image url="@../../../../../../../PizzaPlanet/asztalfoglalas.jpeg" />
+            <Image url="@../images/asztalfoglalas.jpeg" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="274.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet" textAlignment="CENTER">
@@ -52,7 +52,7 @@
       <Separator layoutX="9.0" layoutY="495.0" prefHeight="6.0" prefWidth="776.0" style="-fx-background-color: #DAA520; -fx-border-color: #DAA520;" />
       <ImageView fitHeight="74.0" fitWidth="69.0" layoutX="370.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../PizzaPlanet/szakacs.jpeg" />
+            <Image url="@../images/szakacs.jpeg" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="33.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet ©" />
