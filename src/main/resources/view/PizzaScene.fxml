@@ -1,11 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.PizzaSceneController">
-    
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="794.0" style="-fx-background-color: red; -fx-border-color: #DAA520; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.PizzaSceneController">
+   <children>
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="60.0" layoutY="94.0" pickOnBounds="true" rotate="-90.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="94.0">
+         <image>
+            <Image url="@../../../../../../../PizzaPlanet/rendeles.jpeg" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="451.0" layoutY="94.0" pickOnBounds="true" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="434.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="94.0">
+         <image>
+            <Image url="@../../../../../../../PizzaPlanet/asztalfoglalas.jpeg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="274.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet" textAlignment="CENTER">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="34.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="316.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdvözöljük!">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="70.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleRendelesButtonPushed" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #DAA520; -fx-font-weight: bold;" text="Pizzarendelés" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="444.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleFoglalasButtonPushed" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #DAA520; -fx-font-weight: bold;" text="Asztalfoglalás" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="444.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleBejelentkezesPushed" prefHeight="47.0" prefWidth="300.0" style="-fx-background-color: #DAA520; -fx-font-weight: bold;" text="Dolgozói bejelentkezés" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Separator layoutX="9.0" layoutY="495.0" prefHeight="6.0" prefWidth="776.0" style="-fx-background-color: #DAA520; -fx-border-color: #DAA520;" />
+      <ImageView fitHeight="74.0" fitWidth="69.0" layoutX="370.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../PizzaPlanet/szakacs.jpeg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="33.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet ©" />
+   </children>
 </AnchorPane>

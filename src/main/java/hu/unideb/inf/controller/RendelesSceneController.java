@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -22,16 +24,30 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class PizzaSceneController implements Initializable {
+public class RendelesSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
+     @FXML
+    private Label extraFeltet;
+   
     @FXML
-    void handleRendelesButtonPushed(ActionEvent event) throws IOException {
-        System.out.println("Rendelés pushed...");
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/RendelesScene.fxml"));
+    private Label gombasFeltet;
+
+    @FXML
+    private Label olaszosFeltet;
+
+    @FXML
+    private Label szalamisFeltet;
+
+    @FXML
+    private Label vegaFeltet;
+    
+    @FXML
+    void handleEgyeniButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/EgyeniScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -40,17 +56,8 @@ public class PizzaSceneController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-    
-    @FXML
-    void handleFoglalasButtonPushed(ActionEvent event) {
-        System.out.println("Foglalás pushed...");
-    }
-    
-    @FXML
-    void handleBejelentkezesPushed(ActionEvent event) {
-        System.out.println("Bejelentkezés pushed...");
-    }
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
