@@ -15,8 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -24,37 +22,16 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class EgyeniSceneController implements Initializable {
+public class UtolsoSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
-       
-    @FXML
-    private RadioButton rbParadicsomos;
-
-    @FXML
-    private ToggleGroup tgAlap;
-
-    @FXML
-    private RadioButton rbTejfolos;
-
-    @FXML
-    private RadioButton rbNormal;
-
-    @FXML
-    private ToggleGroup tgMeret;
-
-    @FXML
-    private RadioButton rbNagy;
-
-    @FXML
-    private RadioButton rbOrias;
     
     @FXML
-    void handleTovabbPushed(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/EgyeniFeltetScene.fxml"));
+    void handleVisszaButtonPushed(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/PizzaScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -63,7 +40,7 @@ public class EgyeniSceneController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

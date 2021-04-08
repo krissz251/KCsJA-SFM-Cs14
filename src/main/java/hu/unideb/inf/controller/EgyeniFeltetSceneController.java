@@ -15,8 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
 /**
@@ -24,53 +24,65 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class RendelesSceneController implements Initializable {
+public class EgyeniFeltetSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
-      @FXML
-    private Label extraFeltet;
+    @FXML
+    private Label elsoFeltetLabel;
 
     @FXML
-    private CheckBox negyedikCheckbox;
+    private Label elsoArLabel;
 
     @FXML
-    private Label gombasFeltet;
+    private Label masodikFeltetLabel;
 
     @FXML
-    private CheckBox masodikCheckbox;
+    private Label harmadikFeltetLabel;
 
     @FXML
-    private Label olaszosFeltet;
+    private Label negyedikFeltetLabel;
 
     @FXML
-    private CheckBox harmadikCheckbox;
+    private Label otodikFeltetLabel;
 
     @FXML
-    private Label szalamisFeltet;
+    private Label hatodikFeltetLabel;
 
     @FXML
-    private CheckBox elsoCheckbox;
+    private Label masodikArLabel;
 
     @FXML
-    private Label vegaFeltet;
+    private Label harmadikArLabel;
 
     @FXML
-    private CheckBox otodikCheckbox;
-    
+    private Label negyedikArLabel;
+
     @FXML
-    void handleEgyeniButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/EgyeniScene.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+    private Label otodikArLabel;
+
+    @FXML
+    private Label hatodikArLabel;
+
+    @FXML
+    private RadioButton rbElso;
+
+    @FXML
+    private RadioButton rbMasodik;
+
+    @FXML
+    private RadioButton rbHarmadik;
+
+    @FXML
+    private RadioButton rbNegyedik;
+
+    @FXML
+    private RadioButton rbOtodik;
+
+    @FXML
+    private RadioButton rbHatodik;
     
     @FXML
     void handleTovabbALeadashoz(ActionEvent event) throws IOException {
@@ -83,7 +95,6 @@ public class RendelesSceneController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
