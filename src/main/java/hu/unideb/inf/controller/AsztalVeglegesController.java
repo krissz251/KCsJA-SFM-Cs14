@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -22,27 +24,24 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class PizzaSceneController implements Initializable {
+public class AsztalVeglegesController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
-    @FXML
-    void handleRendelesButtonPushed(ActionEvent event) throws IOException {
-        
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/RendelesScene.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
     
     @FXML
-    void handleFoglalasButtonPushed(ActionEvent event) throws IOException {
+    private TextField nevTextField;
+
+    @FXML
+    private TextField telefonTextField;
+    
+    @FXML
+    private TextArea megjegyzesTextArea;
+
+    @FXML
+    void handleVisszaButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/AsztalfoglalasScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
@@ -51,12 +50,19 @@ public class PizzaSceneController implements Initializable {
         
         window.setScene(tableViewScene);
         window.show();
-       
+
     }
     
     @FXML
-    void handleBejelentkezesPushed(ActionEvent event) {
+    void handleFoglalasLeadasaPushed(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/AsztalfoglalasUtolsoScene.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
         
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
     }
 
     @Override
