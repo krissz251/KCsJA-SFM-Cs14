@@ -22,16 +22,15 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class PizzaSceneController implements Initializable {
+public class AsztalfoglalasUtolsoSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
     @FXML
-    void handleRendelesButtonPushed(ActionEvent event) throws IOException {
-        
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/RendelesScene.fxml"));
+    void handleVisszaButtonPushed(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/PizzaScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -40,25 +39,6 @@ public class PizzaSceneController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-    
-    @FXML
-    void handleFoglalasButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/AsztalfoglalasScene.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-       
-    }
-    
-    @FXML
-    void handleBejelentkezesPushed(ActionEvent event) {
-        
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
