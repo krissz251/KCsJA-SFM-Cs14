@@ -76,22 +76,31 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Book GetBookingById(int id) {
-        return null;
+     return null;
     }
 
     @Override
     public Item GetItemById(int id) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetItemById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
     public Order GetOrderById(int id) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetOrderById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
     public OrderItem GetOrderItemById(int id) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetOrderItemById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
@@ -107,12 +116,19 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Order AddOrder(AddOrderRequest request) {
-        return null;
-    }
+    return null;}
 
     @Override
     public OrderItem AddOrderItem(AddOrderItemRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        OrderItem newOrderItem = new OrderItem();
+        newOrderItem.Id = request.id;
+        newOrderItem.OrderId = request.orderId;
+        newOrderItem.ItemId=request.itemId;
+        newOrderItem.Amount=request.amount;
+        var result = context.AddOrderItem(newOrderItem);
+        context.Dispose();
+        return result;
     }
 
     @Override
@@ -129,7 +145,9 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public void DeleteOrderItemById(int id) {
-
+        SQLContext context = new SQLContext();
+        context.DeleteOrderItemById(id);
+        context.Dispose();
     }
 
     @Override
