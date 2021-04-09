@@ -1,3 +1,33 @@
-.button {
-    -fx-font-weight: bold;
+.background {
+    -fx-background-color: #a10000;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 10;
+}
+
+.pizzaplanettext{
+    -fx-font-size: 34px;
+    -fx-font-family:"Lucida Handwriting";
+    -fx-font-style: "Italic";
+    -fx-text-fill: white;
+}
+
+.utasitastext{
+    -fx-font-size: 24px;
+    -fx-font-family:"Lucida Handwriting";
+    -fx-font-style: "Italic";
+    -fx-text-fill: white;
+}
+
+.logotext{
+    -fx-font-size: 12px;
+    -fx-font-family:"System";
+    -fx-text-fill: white;
+}
+
+.navigaciosbutton{
+    -fx-font-size: 14px;
+    -fx-font-family:"Lucida Handwriting";
+    -fx-font-style: "Italic";
+    -fx-text-fill: white;
+    -fx-background-color:#DAA520;
 }
