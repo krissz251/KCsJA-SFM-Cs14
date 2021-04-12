@@ -24,7 +24,7 @@ public interface IBusinessData {
     GetItemsListResult GetItemsList(GetItemsListRequest request);
 
     User GetUserById(int id);
-    Book GetBookingById(int id);
+    Booking GetBookingById(int id);
     Item GetItemById(int id);
     Order GetOrderById(int id);
     OrderItem GetOrderItemById(int id);

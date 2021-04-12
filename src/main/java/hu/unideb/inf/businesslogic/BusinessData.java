@@ -75,8 +75,11 @@ public class BusinessData implements IBusinessData{
     }
 
     @Override
-    public Book GetBookingById(int id) {
-     return null;
+    public Booking GetBookingById(int id) {
+        SQLContext context = new SQLContext();
+        var result = context.GetBookingById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
