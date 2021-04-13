@@ -16,7 +16,6 @@ public class OrderItem implements IEntity<OrderItem> {
             Id = rs.getInt("C_ID");
             OrderId = rs.getInt("C_ORDERID");
             ItemId = rs.getInt("C_ITEMID");
-            Amount = rs.getInt("C_AMOUNT");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
