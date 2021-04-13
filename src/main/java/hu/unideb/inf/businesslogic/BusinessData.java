@@ -53,17 +53,23 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public GetOrderItemsListResult GetOrderItemsList(GetOrderItemsListRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetOrderItems(request);
+        context.Dispose();
+        request.PageCount = result.PageCount;
+        return new GetOrderItemsListResult(result.OrderItems,request);
     }
 
     @Override
-    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) {
-        return null;
-    }
+    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) { return null; }
 
     @Override
     public GetItemsListResult GetItemsList(GetItemsListRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetItems(request);
+        context.Dispose();
+        request.PageCount = result.PageCount;
+        return new GetItemsListResult(result.Items,request);
     }
 
     @Override
@@ -125,10 +131,10 @@ public class BusinessData implements IBusinessData{
     public OrderItem AddOrderItem(AddOrderItemRequest request) {
         SQLContext context = new SQLContext();
         OrderItem newOrderItem = new OrderItem();
-        newOrderItem.Id = request.id;
-        newOrderItem.OrderId = request.orderId;
-        newOrderItem.ItemId=request.itemId;
-        newOrderItem.Amount=request.amount;
+        newOrderItem.Id = request.Id;
+        newOrderItem.OrderId = request.OrderId;
+        newOrderItem.ItemId=request.ItemId;
+        newOrderItem.Amount=request.Amount;
         var result = context.AddOrderItem(newOrderItem);
         context.Dispose();
         return result;
@@ -171,6 +177,15 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public OrderItem SetOrderItem(SetOrderItemRequest request) {
+        /*SQLContext context = new SQLContext();
+        var orderItem = context.GetOrderItemById(request.Id);
+        orderItem.Id = request.Id;
+        orderItem.OrderId = request.OrderId;
+        orderItem.ItemId=request.ItemId;
+        orderItem.Amount=request.Amount;
+        var result = context.(orderItem);
+        context.Dispose();
+        return result;*/
         return null;
     }
 
