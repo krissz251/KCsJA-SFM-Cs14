@@ -1,6 +1,6 @@
 package hu.unideb.inf.dataaccess.Entities;
 
-//import hu.unideb.inf.businesslogic.Enums.ItemType;
+import hu.unideb.inf.businesslogic.Enums.ItemType;
 import hu.unideb.inf.dataaccess.IEntity;
 
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ public class Item implements IEntity<Item> {
     public String Name;
     public int Amount;
     public int Price;
-   // public ItemType Type;
+    public ItemType Type;
     @Override
     public Item Map(ResultSet rs) {
         try {
@@ -19,7 +19,7 @@ public class Item implements IEntity<Item> {
             Name = rs.getString("C_NAME");
             Amount = rs.getInt("C_AMOUNT");
             Price = rs.getInt("C_PRICE");
-            //Type = ItemType.fromInt(rs.getInt("C_TYPE"));
+            Type = ItemType.fromInt(rs.getInt("C_TYPE"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

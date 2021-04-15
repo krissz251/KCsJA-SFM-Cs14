@@ -5,9 +5,6 @@ import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 import hu.unideb.inf.dataaccess.SQLContext;
-//import jdk.jshell.spi.ExecutionControl;
-
-import java.awt.print.Book;
 
 public class BusinessData implements IBusinessData{
 
@@ -53,17 +50,23 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public GetOrderItemsListResult GetOrderItemsList(GetOrderItemsListRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetOrderItems(request);
+        context.Dispose();
+        request.PageCount = result.PageCount;
+        return new GetOrderItemsListResult(result.OrderItems,request);
     }
 
     @Override
-    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) {
-        return null;
-    }
+    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) { return null; }
 
     @Override
     public GetItemsListResult GetItemsList(GetItemsListRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetItems(request);
+        context.Dispose();
+        request.PageCount = result.PageCount;
+        return new GetItemsListResult(result.Items,request);
     }
 
     @Override
@@ -75,23 +78,35 @@ public class BusinessData implements IBusinessData{
     }
 
     @Override
-    public Book GetBookingById(int id) {
-        return null;
+    public Booking GetBookingById(int id) {
+        SQLContext context = new SQLContext();
+        var result = context.GetBookingById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
     public Item GetItemById(int id) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetItemById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
     public Order GetOrderById(int id) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetOrderById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
     public OrderItem GetOrderItemById(int id) {
-        return null;
+        SQLContext context = new SQLContext();
+        var result = context.GetOrderItemById(id);
+        context.Dispose();
+        return result;
     }
 
     @Override
@@ -107,12 +122,19 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Order AddOrder(AddOrderRequest request) {
-        return null;
-    }
+    return null;}
 
     @Override
     public OrderItem AddOrderItem(AddOrderItemRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        OrderItem newOrderItem = new OrderItem();
+        newOrderItem.Id = request.Id;
+        newOrderItem.OrderId = request.OrderId;
+        newOrderItem.ItemId=request.ItemId;
+        newOrderItem.Amount=request.Amount;
+        var result = context.AddOrderItem(newOrderItem);
+        context.Dispose();
+        return result;
     }
 
     @Override
@@ -129,7 +151,9 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public void DeleteOrderItemById(int id) {
-
+        SQLContext context = new SQLContext();
+        context.DeleteOrderItemById(id);
+        context.Dispose();
     }
 
     @Override
@@ -150,6 +174,15 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public OrderItem SetOrderItem(SetOrderItemRequest request) {
+        /*SQLContext context = new SQLContext();
+        var orderItem = context.GetOrderItemById(request.Id);
+        orderItem.Id = request.Id;
+        orderItem.OrderId = request.OrderId;
+        orderItem.ItemId=request.ItemId;
+        orderItem.Amount=request.Amount;
+        var result = context.(orderItem);
+        context.Dispose();
+        return result;*/
         return null;
     }
 

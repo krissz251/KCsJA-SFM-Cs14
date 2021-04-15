@@ -4,8 +4,6 @@ import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 
-import java.awt.print.Book;
-
 public interface IBusinessData {
     //bejelentkezés
     boolean Login(String username, String password);
@@ -24,7 +22,7 @@ public interface IBusinessData {
     GetItemsListResult GetItemsList(GetItemsListRequest request);
 
     User GetUserById(int id);
-    Book GetBookingById(int id);
+    Booking GetBookingById(int id);
     Item GetItemById(int id);
     Order GetOrderById(int id);
     OrderItem GetOrderItemById(int id);
