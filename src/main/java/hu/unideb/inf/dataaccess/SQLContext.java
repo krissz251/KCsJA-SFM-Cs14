@@ -1,5 +1,6 @@
 package hu.unideb.inf.dataaccess;
 
+import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.Interfaces.IPaged;
 import hu.unideb.inf.businesslogic.ResultModels.DaoResults.ItemsResult;
 import hu.unideb.inf.businesslogic.ResultModels.DaoResults.OrderItemsResult;
@@ -328,7 +329,7 @@ public class SQLContext extends PersistentContextBase{
             String query = String.format(
                     "update T_ORDER set C_NAME = '%s', C_STATE = %d, C_DATE = '%s' where C_ID = %d",
                     newValues.Name,
-                    newValues.State,
+                    OrderState.toInt(newValues.State),
                     newValues.Date,
                     newValues.Id);
             if(stmnt != null){
@@ -398,10 +399,10 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERS (C_NAME, C_DATE, C_STATE) VALUES ('%s',%d,%d);",
+                    "INSERT INTO T_ORDERS (C_NAME, C_DATE, C_STATE) VALUES ('%s','%s',%d);",
                     newBooking.Name,
                     newBooking.Date,
-                    newBooking.State);
+                    OrderState.toInt(newBooking.State));
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);
