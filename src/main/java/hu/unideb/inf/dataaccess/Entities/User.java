@@ -21,4 +21,17 @@ public class User implements IEntity<User> {
         }
         return this;
     }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    
+    
 }
+
+
