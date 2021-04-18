@@ -1,28 +1,29 @@
 package hu.unideb.inf.businesslogic.Enums;
 
-public enum OrderState {
+
+public enum BookingState{
     NotSet,
-    InProgress,
-    Done;
-    public static OrderState fromInt(int i){
+    Free,
+    Booked;
+    public static BookingState fromInt(int i){
         switch(i){
             case 1:{
-                return InProgress;
+                return Free;
             }
             case 2:{
-                return Done;
+                return Booked;
             }
             default:{
                 return NotSet;
             }
         }
     }
-    public static int toInt(OrderState val){
+    public static int toInt(BookingState val){
         switch(val){
-            case InProgress:{
+            case Free:{
                 return 1;
             }
-            case Done:{
+            case Booked:{
                 return 2;
             }
             default:{

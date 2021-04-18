@@ -9,7 +9,6 @@ public class OrderItem implements IEntity<OrderItem> {
     public int Id;
     public int OrderId;
     public int ItemId;
-    public int Amount;
     @Override
     public OrderItem Map(ResultSet rs) {
         try {

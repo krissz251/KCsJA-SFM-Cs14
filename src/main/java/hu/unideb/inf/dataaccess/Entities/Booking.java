@@ -1,5 +1,6 @@
 package hu.unideb.inf.dataaccess.Entities;
 
+import hu.unideb.inf.businesslogic.Enums.BookingState;
 import hu.unideb.inf.dataaccess.IEntity;
 
 import java.sql.Date;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 public class Booking implements IEntity<Booking> {
     public int Id;
     public String Name;
-    public int State;
+    public BookingState State;
     public Date Date;
     public int Table;
     @Override
@@ -18,7 +19,7 @@ public class Booking implements IEntity<Booking> {
             Id = rs.getInt("C_ID");
             Name = rs.getString("C_NAME");
             Date = Date.valueOf(rs.getString("C_DATE"));
-            State = rs.getInt("C_STATE");
+            State = BookingState.fromInt(rs.getInt("C_STATE"));
             Table = rs.getInt("C_TABLE");
         } catch (SQLException throwables) {
             throwables.printStackTrace();

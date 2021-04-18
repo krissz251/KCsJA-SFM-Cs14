@@ -37,7 +37,6 @@ public interface IBusinessData {
 
     User SetUser(SetUserRequest request);
     Order SetOrder(SetOrderRequest request);
-    OrderItem SetOrderItem(SetOrderItemRequest request);
     Booking SetBooking(SetBookingRequest request);
 
 }

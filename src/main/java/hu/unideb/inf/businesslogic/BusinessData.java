@@ -1,6 +1,7 @@
 package hu.unideb.inf.businesslogic;
 
 
+import hu.unideb.inf.businesslogic.Enums.BookingState;
 import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
@@ -122,16 +123,15 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Order AddOrder(AddOrderRequest request) {
-    return null;}
+        return null;
+    }
 
     @Override
     public OrderItem AddOrderItem(AddOrderItemRequest request) {
         SQLContext context = new SQLContext();
         OrderItem newOrderItem = new OrderItem();
-        newOrderItem.Id = request.Id;
         newOrderItem.OrderId = request.OrderId;
         newOrderItem.ItemId=request.ItemId;
-        newOrderItem.Amount=request.Amount;
         var result = context.AddOrderItem(newOrderItem);
         context.Dispose();
         return result;
@@ -139,7 +139,13 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Booking AddBooking(AddBookingRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var newBooking = new Booking();
+        newBooking.State = BookingState.Booked;
+        newBooking.Name = request.Name;
+        newBooking.Table = request.Table;
+        context.Dispose();
+        return newBooking;
     }
 
     @Override
@@ -169,25 +175,22 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Order SetOrder(SetOrderRequest request) {
-        return null;
-    }
-
-    @Override
-    public OrderItem SetOrderItem(SetOrderItemRequest request) {
-        /*SQLContext context = new SQLContext();
-        var orderItem = context.GetOrderItemById(request.Id);
-        orderItem.Id = request.Id;
-        orderItem.OrderId = request.OrderId;
-        orderItem.ItemId=request.ItemId;
-        orderItem.Amount=request.Amount;
-        var result = context.(orderItem);
+        SQLContext context = new SQLContext();
+        var order = context.GetOrderById(request.Id);
+        order.Name = request.Name;
+        order.State = request.State;
+        var result = context.SetOrder(order);
         context.Dispose();
-        return result;*/
-        return null;
+        return result;
     }
 
     @Override
     public Booking SetBooking(SetBookingRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var booking = context.GetBookingById(request.Id);
+        booking.State = request.State;
+        var result = context.SetBooking(booking);
+        context.Dispose();
+        return result;
     }
 }

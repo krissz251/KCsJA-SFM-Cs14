@@ -1,5 +1,6 @@
 package hu.unideb.inf.dataaccess;
 
+import hu.unideb.inf.businesslogic.Enums.BookingState;
 import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.Interfaces.IPaged;
 import hu.unideb.inf.businesslogic.ResultModels.DaoResults.ItemsResult;
@@ -288,7 +289,7 @@ public class SQLContext extends PersistentContextBase{
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetUserById(newValues.Id);
+                result = GetUserById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -305,13 +306,13 @@ public class SQLContext extends PersistentContextBase{
             String query = String.format(
                     "update T_BOOKING set C_NAME = '%s', C_STATE = %d, C_DATE = '%s', C_TABLE = %d where C_ID = %d",
                     newValues.Name,
-                    newValues.State,
+                    BookingState.toInt(newValues.State),
                     newValues.Date,
                     newValues.Table,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetBookingById(newValues.Id);
+                result = GetBookingById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -334,7 +335,7 @@ public class SQLContext extends PersistentContextBase{
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetOrderById(newValues.Id);
+                result = GetOrderById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -357,7 +358,7 @@ public class SQLContext extends PersistentContextBase{
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetItemById(newValues.Id);
+                result = GetItemById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -375,7 +376,7 @@ public class SQLContext extends PersistentContextBase{
             String query = String.format(
                     "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_DATE, C_TABLE) VALUES ('%s',%d,'%s',%d);",
                     newBooking.Name,
-                    newBooking.State,
+                    BookingState.toInt(newBooking.State),
                     newBooking.Date,
                     newBooking.Table);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
@@ -383,7 +384,7 @@ public class SQLContext extends PersistentContextBase{
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetBookingById(rs.getInt("C_ID"));
+                    result = GetBookingById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){
@@ -408,7 +409,7 @@ public class SQLContext extends PersistentContextBase{
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetOrderById(rs.getInt("C_ID"));
+                    result = GetOrderById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){
@@ -424,16 +425,15 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERITEMS (C_ORDERID, C_ITEMID, C_AMOUNT) VALUES (%d,%d,%d);",
+                    "INSERT INTO T_ORDERITEMS (C_ORDERID, C_ITEMID) VALUES (%d,%d);",
                     newOrderItem.OrderId,
-                    newOrderItem.ItemId,
-                    newOrderItem.Amount);
+                    newOrderItem.ItemId);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetOrderItemById(rs.getInt("C_ID"));
+                    result = GetOrderItemById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){
@@ -458,7 +458,7 @@ public class SQLContext extends PersistentContextBase{
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetUserById(rs.getInt("C_ID"));
+                    result = GetUserById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){

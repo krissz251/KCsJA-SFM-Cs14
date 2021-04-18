@@ -16,8 +16,10 @@ public enum ItemType {
             case 3:{
                 return Sauce;
             }
+            default:{
+                return NotSet;
+            }
         }
-        return NotSet;
     }
     public static int toInt(ItemType val){
         switch(val){
