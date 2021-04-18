@@ -48,7 +48,6 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Név:" textFill="WHITE" GridPane.halignment="CENTER">
@@ -61,22 +60,12 @@
                   <Font name="Lucida Handwriting Italic" size="18.0" />
                </font>
             </Label>
-            <Label text="Telefonszám:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="18.0" />
-               </font>
-            </Label>
             <TextField fx:id="nevTextField" prefHeight="26.0" prefWidth="254.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
             <TextField fx:id="cimTextField" prefHeight="26.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="5.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="telefonTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>

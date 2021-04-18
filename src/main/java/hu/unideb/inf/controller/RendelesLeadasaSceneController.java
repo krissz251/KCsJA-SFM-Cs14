@@ -42,9 +42,6 @@ public class RendelesLeadasaSceneController implements Initializable {
     private TextField cimTextField;
 
     @FXML
-    private TextField telefonTextField;
-
-    @FXML
     private TextArea megjegyzesTextArea;
     
     @FXML
