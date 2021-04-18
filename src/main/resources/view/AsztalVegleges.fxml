@@ -25,7 +25,7 @@
             <Font name="Lucida Handwriting Italic" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="563.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleFoglalasLeadasaPushed" style="-fx-background-color: #DAA520;" text="Foglalás leadása" textFill="WHITE">
+      <Button layoutX="563.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleFoglalasLeadasaPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Foglalás leadása" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
@@ -62,7 +62,7 @@
             </TextField>
          </children>
       </GridPane>
-      <Button layoutX="126.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520;" text="Vissza" textFill="WHITE">
+      <Button layoutX="126.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>

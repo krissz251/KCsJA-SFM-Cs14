@@ -20,7 +20,7 @@
             <Font name="Lucida Handwriting Italic" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="563.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520;" text="Vissza a kezdőlapra" textFill="WHITE">
+      <Button layoutX="563.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza a kezdőlapra" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
