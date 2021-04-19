@@ -74,13 +74,18 @@ public class FeltetekListazasaSceneController implements Initializable {
         
 
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        Nev.setCellValueFactory(new PropertyValueFactory<Item,String>("Name"));
+    
+    @FXML
+    void handleFeltetekBetoltesePushed(ActionEvent event) {
+            Nev.setCellValueFactory(new PropertyValueFactory<Item,String>("Name"));
         Mennyiseg.setCellValueFactory(new PropertyValueFactory<Item,Integer>("Amount"));
         Ar.setCellValueFactory(new PropertyValueFactory<Item,Integer>("Price"));
         
         Table.setItems(olist);
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //TODOs
     }    
     
 }

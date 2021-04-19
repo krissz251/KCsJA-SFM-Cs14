@@ -81,13 +81,18 @@ public class DolgozoiSceneController implements Initializable {
         window.show();
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        Felhasznalo.setCellValueFactory(new PropertyValueFactory<User,String>("Name"));
+    @FXML
+    void handleDolgozokBetoltesePushed(ActionEvent event) {
+            Felhasznalo.setCellValueFactory(new PropertyValueFactory<User,String>("Name"));
         Jelszo.setCellValueFactory(new PropertyValueFactory<User,String>("Password"));
         
         
         Table.setItems(olist);
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //TODO
     }    
     
 }

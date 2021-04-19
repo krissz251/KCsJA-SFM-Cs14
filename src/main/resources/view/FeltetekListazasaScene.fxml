@@ -27,5 +27,10 @@
             <TableColumn fx:id="Ar" prefWidth="191.2000732421875" text="Ár" />
          </columns>
       </TableView>
+      <Button layoutX="60.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleFeltetekBetoltesePushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Adatok betöltése" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
