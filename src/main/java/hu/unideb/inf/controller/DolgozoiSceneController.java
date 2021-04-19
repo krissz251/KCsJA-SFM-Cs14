@@ -6,6 +6,7 @@
 package hu.unideb.inf.controller;
 
 import hu.unideb.inf.businesslogic.BusinessData;
+import hu.unideb.inf.businesslogic.RequestModels.AddUserRequest;
 import hu.unideb.inf.businesslogic.RequestModels.GetUsersListRequest;
 import hu.unideb.inf.businesslogic.ResultModels.GetUsersListResult;
 import hu.unideb.inf.dataaccess.Entities.User;
@@ -21,10 +22,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -47,11 +51,17 @@ public class DolgozoiSceneController implements Initializable {
     @FXML
     private TableColumn<User, String> Jelszo;
     
+    @FXML
+    private TextField FelhasznaloTextField;
+
+    @FXML
+    private PasswordField jelszoPasswordField;
+    
+      
+    
     BusinessData bsd= new BusinessData();
     
-    GetUsersListResult UserList=bsd.GetUsersList(new GetUsersListRequest(0,1));
     
-   ObservableList<User> olist= FXCollections.observableArrayList(UserList.Collection);
    
  
 
@@ -81,14 +91,62 @@ public class DolgozoiSceneController implements Initializable {
         window.show();
     }
     
-    @FXML
-    void handleDolgozokBetoltesePushed(ActionEvent event) {
+    
+    
+    public void refreshDolgozok(){
+        GetUsersListResult UserList=bsd.GetUsersList(new GetUsersListRequest(0,10));
+    
+   ObservableList<User> olist= FXCollections.observableArrayList(UserList.Collection);
             Felhasznalo.setCellValueFactory(new PropertyValueFactory<User,String>("Name"));
         Jelszo.setCellValueFactory(new PropertyValueFactory<User,String>("Password"));
         
         
         Table.setItems(olist);
     }
+    
+    @FXML
+    void handleDolgozokBetoltesePushed(ActionEvent event) {
+       /* GetUsersListResult UserList=bsd.GetUsersList(new GetUsersListRequest(0,10));
+    
+   ObservableList<User> olist= FXCollections.observableArrayList(UserList.Collection);
+            Felhasznalo.setCellValueFactory(new PropertyValueFactory<User,String>("Name"));
+        Jelszo.setCellValueFactory(new PropertyValueFactory<User,String>("Password"));
+        
+        
+        Table.setItems(olist);*/
+       refreshDolgozok();
+    }
+    
+      @FXML
+    void handleDolgozoHozzadasaPushed(ActionEvent event) throws IOException {
+             Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/DolgozoHozzadasa.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage stage= new Stage();
+        stage.setScene(tableViewScene);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+    }
+    
+    @FXML
+    void handleHozzadasVisszaButtonPushed(ActionEvent event) {
+        
+        Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+
+    }
+    
+     @FXML
+    void handleMentesButtonPushed(ActionEvent event) { 
+          AddUserRequest user= new AddUserRequest(FelhasznaloTextField.getText(),jelszoPasswordField.getText());
+          User newuser=bsd.AddUser(user);
+          System.out.println(newuser.Name);
+          System.out.println(newuser.Password);
+          //refreshDolgozok();
+          Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+          stage.close();
+          
+    }
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

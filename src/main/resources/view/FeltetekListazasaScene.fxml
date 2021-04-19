@@ -32,5 +32,10 @@
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
       </Button>
+      <Button layoutX="60.0" layoutY="479.0" mnemonicParsing="false" onAction="#handleTovabbaDolgozokButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Dolgozók listázása" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
