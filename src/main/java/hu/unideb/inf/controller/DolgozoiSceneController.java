@@ -22,6 +22,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -137,6 +139,15 @@ public class DolgozoiSceneController implements Initializable {
     
      @FXML
     void handleMentesButtonPushed(ActionEvent event) { 
+        
+        if(FelhasznaloTextField.getText().isEmpty() || jelszoPasswordField.getText().isEmpty()){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText("Hiba a kitöltés során.");
+                alert.setContentText("Mindegyik mezőt ki kell tölteni!");
+                alert.showAndWait();
+        
+        }else{
           AddUserRequest user= new AddUserRequest(FelhasznaloTextField.getText(),jelszoPasswordField.getText());
           User newuser=bsd.AddUser(user);
           System.out.println(newuser.Name);
@@ -144,7 +155,7 @@ public class DolgozoiSceneController implements Initializable {
           //refreshDolgozok();
           Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
           stage.close();
-          
+        }
     }
 
     
