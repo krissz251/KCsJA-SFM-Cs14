@@ -108,14 +108,6 @@ public class DolgozoiSceneController implements Initializable {
     
     @FXML
     void handleDolgozokBetoltesePushed(ActionEvent event) {
-       /* GetUsersListResult UserList=bsd.GetUsersList(new GetUsersListRequest(0,10));
-    
-   ObservableList<User> olist= FXCollections.observableArrayList(UserList.Collection);
-            Felhasznalo.setCellValueFactory(new PropertyValueFactory<User,String>("Name"));
-        Jelszo.setCellValueFactory(new PropertyValueFactory<User,String>("Password"));
-        
-        
-        Table.setItems(olist);*/
        refreshDolgozok();
     }
     
@@ -156,6 +148,19 @@ public class DolgozoiSceneController implements Initializable {
           Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
           stage.close();
         }
+        
+        //refreshDolgozok();
+    }
+    
+    @FXML
+    void handleDolgozoTorlesePushed(ActionEvent event) {
+        //Table.getItems().removeAll(Table.getSelectionModel().getSelectedItem());
+        bsd.DeleteUserById(Table.getSelectionModel().getSelectedItem().Id);
+        Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Törlés");
+                alert.setHeaderText("A felhasználó törlésre került.");
+                alert.showAndWait();
+        refreshDolgozok();
     }
 
     

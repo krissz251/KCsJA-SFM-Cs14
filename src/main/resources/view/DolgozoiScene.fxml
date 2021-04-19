@@ -36,7 +36,12 @@
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="248.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleDolgozoHozzadasaPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Felhasználó hozzáadása" textFill="WHITE">
+      <Button layoutX="256.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleDolgozoHozzadasaPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Felhasználó hozzáadása" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="514.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleDolgozoTorlesePushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Felhasználó törlése" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
