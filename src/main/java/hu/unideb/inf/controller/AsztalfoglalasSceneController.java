@@ -30,6 +30,7 @@ public class AsztalfoglalasSceneController implements Initializable {
      * Initializes the controller class.
      */
     
+    
      @FXML
     private RadioButton rb11;
 
@@ -75,15 +76,48 @@ public class AsztalfoglalasSceneController implements Initializable {
     
     @FXML
     void handleVeglegesitesPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/AsztalVegleges.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AsztalVegleges.fxml") );
+        Parent root = loader.load();
         
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        int tableid = 0;
+        if (rb11.isSelected()) {
+            tableid= 1;
+        }
+        else if (rb12.isSelected()) {
+            tableid=2;
+        }
+         else if (rb13.isSelected()) {
+            tableid=3;
+        }
+         else if (rb21.isSelected()) {
+            tableid=4;
+        }
+         else if (rb22.isSelected()) {
+            tableid=5;
+        }
+         else if (rb23.isSelected()) {
+            tableid=6;
+        }
+         else if (rb31.isSelected()) {
+            tableid=7;
+        }
+         else if (rb32.isSelected()) {
+            tableid=8;
+        }
+         else if (rb33.isSelected()) {
+            tableid=9;
+        }
+        AsztalVeglegesController asztalVeglegesController = loader.getController();
+        asztalVeglegesController.setTableId(tableid);
         
-        window.setScene(tableViewScene);
-        window.show();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+       
     }
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

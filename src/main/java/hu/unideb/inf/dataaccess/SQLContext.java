@@ -12,7 +12,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 
 public class SQLContext extends PersistentContextBase{
@@ -403,13 +405,16 @@ public class SQLContext extends PersistentContextBase{
     @Override
     public Booking AddBooking(Booking newBooking) {
         Booking result = null;
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        String datenow=formatter.format(date);
         try {
             var stmnt = CreateStatement();
             String query = String.format(
                     "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_DATE, C_TABLE) VALUES ('%s',%d,'%s',%d);",
                     newBooking.Name,
-                    newBooking.State,
-                    newBooking.Date,
+                    1,
+                    datenow,
                     newBooking.Table);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){

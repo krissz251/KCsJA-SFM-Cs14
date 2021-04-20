@@ -146,7 +146,14 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Booking AddBooking(AddBookingRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        Booking newBooking = new Booking();
+        newBooking.Id = request.Id;
+        newBooking.Name = request.Name;
+        newBooking.Table=request.Tableid;      
+        var result = context.AddBooking(newBooking);
+        context.Dispose();
+        return result;
     }
 
     @Override
