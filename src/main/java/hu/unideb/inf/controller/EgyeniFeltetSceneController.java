@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
@@ -66,23 +67,23 @@ public class EgyeniFeltetSceneController implements Initializable {
     @FXML
     private Label hatodikArLabel;
 
-    @FXML
-    private RadioButton rbElso;
+     @FXML
+    private CheckBox elsoCheckbox;
 
     @FXML
-    private RadioButton rbMasodik;
+    private CheckBox masodikCheckbox;
 
     @FXML
-    private RadioButton rbHarmadik;
+    private CheckBox harmadikCheckbox;
 
     @FXML
-    private RadioButton rbNegyedik;
+    private CheckBox negyedikCheckbox;
 
     @FXML
-    private RadioButton rbOtodik;
+    private CheckBox otodikCheckbox;
 
     @FXML
-    private RadioButton rbHatodik;
+    private CheckBox hatodikCheckbox;
     
     @FXML
     void handleTovabbALeadashoz(ActionEvent event) throws IOException {

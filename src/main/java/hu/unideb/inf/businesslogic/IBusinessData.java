@@ -4,8 +4,6 @@ import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 
-import java.awt.print.Book;
-
 public interface IBusinessData {
     //bejelentkezés
     boolean Login(String username, String password);
@@ -39,7 +37,6 @@ public interface IBusinessData {
 
     User SetUser(SetUserRequest request);
     Order SetOrder(SetOrderRequest request);
-    OrderItem SetOrderItem(SetOrderItemRequest request);
     Booking SetBooking(SetBookingRequest request);
 
 }
