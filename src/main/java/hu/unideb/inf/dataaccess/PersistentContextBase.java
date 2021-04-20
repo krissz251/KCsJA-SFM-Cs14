@@ -1,5 +1,6 @@
 package hu.unideb.inf.dataaccess;
 
+import hu.unideb.inf.businesslogic.ResultModels.DaoResults.BookingsResult;
 import hu.unideb.inf.businesslogic.Interfaces.IPaged;
 import hu.unideb.inf.businesslogic.ResultModels.DaoResults.ItemsResult;
 import hu.unideb.inf.businesslogic.ResultModels.DaoResults.OrderItemsResult;
@@ -22,7 +23,8 @@ public abstract class PersistentContextBase {
     public abstract OrdersResult GetOrders(IPaged request);
     public abstract OrderItemsResult GetOrderItems(IPaged request);
     public abstract ItemsResult GetItems(IPaged request);
-
+    public abstract BookingsResult GetBookings(IPaged request);
+    
     public abstract Booking SetBooking(Booking newValues);
     public abstract Order SetOrder(Order newValues);
     public abstract Item SetItem(Item newValues);

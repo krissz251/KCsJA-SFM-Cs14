@@ -163,6 +163,17 @@ public class DolgozoiSceneController implements Initializable {
         refreshDolgozok();
     }
 
+     @FXML
+    void handleFoglalasokListazasaPushed(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/FoglalasListazasScene.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

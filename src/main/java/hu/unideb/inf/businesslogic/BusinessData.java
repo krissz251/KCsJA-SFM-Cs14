@@ -58,8 +58,15 @@ public class BusinessData implements IBusinessData{
     }
 
     @Override
-    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) { return null; }
+    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) {
+        SQLContext context = new SQLContext();        
+        var result = context.GetBookings(request);       
+        context.Dispose();
+        request.PageCount = result.PageCount;
+        return new GetBookingsListResult(result.Bookings,request);       
+    }
 
+    
     @Override
     public GetItemsListResult GetItemsList(GetItemsListRequest request) {
         SQLContext context = new SQLContext();
@@ -190,4 +197,5 @@ public class BusinessData implements IBusinessData{
     public Booking SetBooking(SetBookingRequest request) {
         return null;
     }
+
 }
