@@ -150,10 +150,18 @@ public class DolgozoiSceneController implements Initializable {
         }
         
         //refreshDolgozok();
+        
     }
     
     @FXML
     void handleDolgozoTorlesePushed(ActionEvent event) {
+        if(Table.getSelectionModel().isEmpty()){
+        Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText("A törléshez válassz ki egy felhasználót a listából!");
+                alert.showAndWait();
+        
+        }else{
         //Table.getItems().removeAll(Table.getSelectionModel().getSelectedItem());
         bsd.DeleteUserById(Table.getSelectionModel().getSelectedItem().Id);
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -161,6 +169,8 @@ public class DolgozoiSceneController implements Initializable {
                 alert.setHeaderText("A felhasználó törlésre került.");
                 alert.showAndWait();
         refreshDolgozok();
+        
+        }
     }
 
     
