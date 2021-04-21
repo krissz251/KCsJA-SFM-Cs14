@@ -5,9 +5,9 @@ import hu.unideb.inf.dataaccess.Entities.OrderItem;
 import java.util.List;
 
 public class FullOrderRequest {
-    public List<OrderItem> OrderItems;
+    public List<Integer> OrderItems;
     public String Name;
-    public FullOrderRequest(List<OrderItem> orderItems,String name){
+    public FullOrderRequest(List<Integer> orderItems,String name){
         this.OrderItems = orderItems;
         this.Name = name;
     }
