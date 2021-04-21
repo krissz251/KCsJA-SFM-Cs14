@@ -12,6 +12,7 @@ import hu.unideb.inf.businesslogic.ResultModels.GetUsersListResult;
 import hu.unideb.inf.dataaccess.Entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -52,19 +54,14 @@ public class DolgozoiSceneController implements Initializable {
 
     @FXML
     private TableColumn<User, String> Jelszo;
-    
-    @FXML
-    private TextField FelhasznaloTextField;
-
-    @FXML
-    private PasswordField jelszoPasswordField;
+   
+       
     
       
     
     BusinessData bsd= new BusinessData();
-    
-    
    
+    Stage stagew= new Stage();
  
 
     @FXML
@@ -95,7 +92,7 @@ public class DolgozoiSceneController implements Initializable {
     
     
     
-    public void refreshDolgozok(){
+    public void  refreshDolgozok(){
         GetUsersListResult UserList=bsd.GetUsersList(new GetUsersListRequest(0,10));
     
    ObservableList<User> olist= FXCollections.observableArrayList(UserList.Collection);
@@ -113,56 +110,32 @@ public class DolgozoiSceneController implements Initializable {
     
       @FXML
     void handleDolgozoHozzadasaPushed(ActionEvent event) throws IOException {
-             Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/DolgozoHozzadasa.fxml"));
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DolgozoHozzadasa.fxml"));
+             Parent tableViewParent = loader.load();
         Scene tableViewScene = new Scene(tableViewParent);
         Stage stage= new Stage();
         stage.setScene(tableViewScene);
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
+        DolgozoHozzadasaController dolgozoiSceneController = loader.getController();
+          dolgozoiSceneController.setStagew((Stage) ((Node) event.getSource()).getScene().getWindow());
+        
     }
     
-    @FXML
-    void handleHozzadasVisszaButtonPushed(ActionEvent event) {
-        
-        Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-
-    }
     
-     @FXML
-    void handleMentesButtonPushed(ActionEvent event) { 
-        
-        if(FelhasznaloTextField.getText().isEmpty() || jelszoPasswordField.getText().isEmpty()){
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Hiba");
-                alert.setHeaderText("Hiba a kitöltés során.");
-                alert.setContentText("Mindegyik mezőt ki kell tölteni!");
-                alert.showAndWait();
-        
-        }else{
-          AddUserRequest user= new AddUserRequest(FelhasznaloTextField.getText(),jelszoPasswordField.getText());
-          User newuser=bsd.AddUser(user);
-          System.out.println(newuser.Name);
-          System.out.println(newuser.Password);
-          //refreshDolgozok();
-          Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
-          stage.close();
-        }
-        
-        //refreshDolgozok();
-        
-    }
+    
+   
     
     @FXML
     void handleDolgozoTorlesePushed(ActionEvent event) {
         if(Table.getSelectionModel().isEmpty()){
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Hiba");
                 alert.setHeaderText("A törléshez válassz ki egy felhasználót a listából!");
                 alert.showAndWait();
         
         }else{
-        //Table.getItems().removeAll(Table.getSelectionModel().getSelectedItem());
         bsd.DeleteUserById(Table.getSelectionModel().getSelectedItem().Id);
         Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Törlés");

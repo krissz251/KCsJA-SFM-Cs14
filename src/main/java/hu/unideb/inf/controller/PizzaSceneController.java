@@ -138,7 +138,7 @@ result.ifPresent(usernamePassword -> {
     BusinessData bsd = new BusinessData();
     if(bsd.Login(usernamePassword.getKey(),usernamePassword.getValue())){
         try {
-            System.out.println("Sikeres bejelentkezés.");
+            //System.out.println("Sikeres bejelentkezés.");
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/DolgozoiScene.fxml"));
             Scene tableViewScene = new Scene(tableViewParent);
             
@@ -153,7 +153,11 @@ result.ifPresent(usernamePassword -> {
         
     }
         else{
-        System.out.println("Nem sikerült bejelentkezni.");
+        Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Bejelentkezési hiba");
+                alert.setHeaderText("Nem sikerült bejelentkezni!");
+                alert.setContentText("Rossz felhasználónév vagy jelszó!");
+                alert.showAndWait();
     }
 });
 
