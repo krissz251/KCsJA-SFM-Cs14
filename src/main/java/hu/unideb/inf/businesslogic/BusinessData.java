@@ -2,10 +2,14 @@ package hu.unideb.inf.businesslogic;
 
 
 import hu.unideb.inf.businesslogic.Enums.BookingState;
+import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 import hu.unideb.inf.dataaccess.SQLContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BusinessData implements IBusinessData{
 
@@ -19,17 +23,74 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public GetCheckoutResult GetCheckOut(int orderId) {
-        return null;
+        SQLContext context = new SQLContext();
+        var orderItemsResult = context.GetOrderItems(new GetOrdersListRequest(0,100));
+        int sum = 0;
+        for (var orderItem: orderItemsResult.OrderItems) {
+            var item = context.GetItemById(orderItem.ItemId);
+            if(item != null){
+                sum += item.Price;
+            }
+        }
+        return new GetCheckoutResult(sum);
     }
 
     @Override
     public FullOrderResult AddFullOrder(FullOrderRequest request) {
-        return null;
+        FullOrderResult result = null;
+        SQLContext context = new SQLContext();
+        Order order = new Order();
+        order.Name = request.Name;
+        order.State = OrderState.InProgress;
+        Order resultOrder = context.AddOrder(order);
+        List<OrderItem> orderItemsResult = new ArrayList<>();
+        if(resultOrder != null){
+            for (var item:request.OrderItems) {
+                OrderItem orderItem = new OrderItem();
+                orderItem.OrderId = resultOrder.Id;
+                orderItem.ItemId = item;
+                var resultItem = context.AddOrderItem(orderItem);
+                if(resultItem != null){
+                    orderItemsResult.add(resultItem);
+                }
+            }
+            int fullPrice = GetCheckOut(resultOrder.Id).Sum;
+            result = new FullOrderResult(
+                    resultOrder.Id,
+                    orderItemsResult,
+                    fullPrice,
+                    resultOrder.Name,
+                    resultOrder.Date
+            );
+
+        }
+        context.Dispose();
+        return result;
     }
 
     @Override
     public FullOrderResult GetFullOrder(int id) {
-        return null;
+        FullOrderResult result = null;
+        SQLContext context = new SQLContext();
+        var resultOrder = context.GetOrderById(id);
+        var orderItemsResult = context.GetOrderItems(new GetOrdersListRequest(0,100));
+        int fullPrice = GetCheckOut(id).Sum;
+        if(resultOrder != null){
+            result = new FullOrderResult(
+                    resultOrder.Id,
+                    orderItemsResult.OrderItems,
+                    fullPrice,
+                    resultOrder.Name,
+                    resultOrder.Date
+            );
+        }
+        context.Dispose();
+        return result;
+    }
+
+    @Override
+    public List<Booking> GetActiveBookings() {
+        return new SQLContext().GetActiveBookings();
     }
 
     @Override
@@ -144,6 +205,7 @@ public class BusinessData implements IBusinessData{
         newBooking.State = BookingState.Booked;
         newBooking.Name = request.Name;
         newBooking.Table = request.Table;
+        context.AddBooking(newBooking);
         context.Dispose();
         return newBooking;
     }

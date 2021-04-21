@@ -41,17 +41,17 @@
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="33.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet ©" />
-      <Button layoutX="70.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleRendelesButtonPushed" prefHeight="55.0" prefWidth="300.0" style="-fx-background-color: #DAA520;" text="Pizzarendelés" textFill="WHITE">
+      <Button layoutX="70.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleRendelesButtonPushed" prefHeight="55.0" prefWidth="300.0" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Pizzarendelés" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="444.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleFoglalasButtonPushed" prefHeight="55.0" prefWidth="300.0" style="-fx-background-color: #DAA520;" text="Asztalfoglalás" textFill="WHITE">
+      <Button layoutX="444.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleFoglalasButtonPushed" prefHeight="55.0" prefWidth="300.0" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Asztalfoglalás" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="444.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleBejelentkezesPushed" prefHeight="55.0" prefWidth="300.0" style="-fx-background-color: #DAA520;" text="Dolgozói bejelentkezés" textFill="WHITE">
+      <Button layoutX="444.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleBejelentkezesPushed" prefHeight="55.0" prefWidth="300.0" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Dolgozói bejelentkezés" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

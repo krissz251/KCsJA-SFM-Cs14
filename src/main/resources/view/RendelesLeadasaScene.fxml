@@ -25,7 +25,7 @@
             <Font name="Lucida Handwriting Italic" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="563.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleRendelesLeadasa" style="-fx-background-color: #DAA520;" text="Rendelés leadása" textFill="WHITE">
+      <Button layoutX="563.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleRendelesLeadasa" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Rendelés leadása" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
@@ -48,7 +48,6 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Név:" textFill="WHITE" GridPane.halignment="CENTER">
@@ -57,11 +56,6 @@
                </font>
             </Label>
             <Label text="Cím:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="18.0" />
-               </font>
-            </Label>
-            <Label text="Telefonszám:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font name="Lucida Handwriting Italic" size="18.0" />
                </font>
@@ -76,11 +70,6 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="telefonTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets right="5.0" />
-               </GridPane.margin>
-            </TextField>
          </children>
       </GridPane>
       <TextArea fx:id="megjegyzesTextArea" layoutX="181.0" layoutY="352.0" prefHeight="170.0" prefWidth="434.0" />
@@ -89,7 +78,7 @@
             <Font name="Lucida Handwriting Italic" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="126.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520;" text="Vissza" textFill="WHITE">
+      <Button layoutX="126.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>

@@ -8,6 +8,7 @@ import hu.unideb.inf.businesslogic.ResultModels.DaoResults.UsersResult;
 import hu.unideb.inf.dataaccess.Entities.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class PersistentContextBase {
     public abstract boolean LoginUser(String username, String password);
@@ -37,6 +38,8 @@ public abstract class PersistentContextBase {
     public abstract void DeleteBookingById(int id);
     public abstract void DeleteOrderById(int id);
     public abstract void DeleteOrderItemById(int id);
+
+    public abstract List<Booking> GetActiveBookings();
 
     public abstract void Dispose();
 }

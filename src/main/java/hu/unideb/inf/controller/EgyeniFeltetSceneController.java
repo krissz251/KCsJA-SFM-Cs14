@@ -5,9 +5,19 @@
  */
 package hu.unideb.inf.controller;
 
+import hu.unideb.inf.businesslogic.BusinessData;
+import hu.unideb.inf.businesslogic.Enums.ItemType;
+import hu.unideb.inf.businesslogic.RequestModels.GetItemsListRequest;
+import hu.unideb.inf.businesslogic.ResultModels.GetItemsListResult;
+import hu.unideb.inf.dataaccess.Entities.Item;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,6 +95,11 @@ public class EgyeniFeltetSceneController implements Initializable {
     @FXML
     private CheckBox hatodikCheckbox;
     
+    
+    BusinessData bsd= new BusinessData();
+    GetItemsListResult ItemList=bsd.GetItemsList(new GetItemsListRequest(0,11));
+           
+       
     @FXML
     void handleTovabbALeadashoz(ActionEvent event) throws IOException {
           Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/RendelesLeadasaScene.fxml"));
@@ -111,7 +126,25 @@ public class EgyeniFeltetSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        List<Item> toRemove = new ArrayList();
+        for(Item item: ItemList.Collection){
+           if(item.Type!=ItemType.Topping){
+               toRemove.add(item);
+           }
+        }
+        ItemList.Collection.removeAll(toRemove);        
+        elsoFeltetLabel.setText(ItemList.Collection.get(0).Name);
+        elsoArLabel.setText("+"+String.valueOf(ItemList.Collection.get(0).Price)+" Ft");
+        masodikFeltetLabel.setText(ItemList.Collection.get(1).Name);
+        masodikArLabel.setText("+"+String.valueOf(ItemList.Collection.get(1).Price)+" Ft");
+        harmadikFeltetLabel.setText(ItemList.Collection.get(2).Name);
+        harmadikArLabel.setText("+"+String.valueOf(ItemList.Collection.get(2).Price)+" Ft");
+        negyedikFeltetLabel.setText(ItemList.Collection.get(3).Name);
+        negyedikArLabel.setText("+"+String.valueOf(ItemList.Collection.get(3).Price)+" Ft");
+        otodikFeltetLabel.setText(ItemList.Collection.get(4).Name);
+        otodikArLabel.setText("+"+String.valueOf(ItemList.Collection.get(4).Price)+" Ft");
+        hatodikFeltetLabel.setText(ItemList.Collection.get(5).Name);
+        hatodikArLabel.setText("+"+String.valueOf(ItemList.Collection.get(5).Price)+" Ft");
     }    
     
 }

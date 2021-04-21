@@ -5,10 +5,13 @@
  */
 package hu.unideb.inf.controller;
 
+import hu.unideb.inf.businesslogic.BusinessData;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,7 +82,7 @@ public class PizzaSceneController implements Initializable {
     }
 
     @FXML
-    void handleBejelentkezesPushed(ActionEvent event) {
+    void handleBejelentkezesPushed(ActionEvent event) throws IOException {
 
 Dialog<Pair<String, String>> dialog = new Dialog<>();
 dialog.setTitle("Dolgozói bejelentkezés");
@@ -131,8 +134,34 @@ dialog.setResultConverter(dialogButton -> {
 Optional<Pair<String, String>> result = dialog.showAndWait();
 
 result.ifPresent(usernamePassword -> {
-    System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+    //System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
+    BusinessData bsd = new BusinessData();
+    if(bsd.Login(usernamePassword.getKey(),usernamePassword.getValue())){
+        try {
+            //System.out.println("Sikeres bejelentkezés.");
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/DolgozoiScene.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(PizzaSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+        else{
+        Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Bejelentkezési hiba");
+                alert.setHeaderText("Nem sikerült bejelentkezni!");
+                alert.setContentText("Rossz felhasználónév vagy jelszó!");
+                alert.showAndWait();
+    }
 });
+
+    
 
     }
 

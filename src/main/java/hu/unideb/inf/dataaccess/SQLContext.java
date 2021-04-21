@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class SQLContext extends PersistentContextBase{
@@ -304,10 +305,9 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_BOOKING set C_NAME = '%s', C_STATE = %d, C_DATE = '%s', C_TABLE = %d where C_ID = %d",
+                    "update T_BOOKINGS set C_NAME = '%s', C_STATE = %d, C_TABLE = %d where C_ID = %d",
                     newValues.Name,
                     BookingState.toInt(newValues.State),
-                    newValues.Date,
                     newValues.Table,
                     newValues.Id);
             if(stmnt != null){
@@ -321,7 +321,6 @@ public class SQLContext extends PersistentContextBase{
         }
         return result;
     }
-
     @Override
     public Order SetOrder(Order newValues) {
         Order result = null;
@@ -374,10 +373,9 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_DATE, C_TABLE) VALUES ('%s',%d,'%s',%d);",
+                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_TABLE) VALUES ('%s',%d,%d);",
                     newBooking.Name,
                     BookingState.toInt(newBooking.State),
-                    newBooking.Date,
                     newBooking.Table);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
@@ -400,9 +398,8 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERS (C_NAME, C_DATE, C_STATE) VALUES ('%s','%s',%d);",
+                    "INSERT INTO T_ORDERS (C_NAME, C_STATE) VALUES ('%s',%d);",
                     newBooking.Name,
-                    newBooking.Date,
                     OrderState.toInt(newBooking.State));
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
@@ -522,6 +519,25 @@ public class SQLContext extends PersistentContextBase{
         catch(Exception e){
             System.out.println(e.toString());
         }
+    }
+
+    @Override
+    public List<Booking> GetActiveBookings() {
+        List<Booking> result = new ArrayList<>();
+        try {
+            var stmnt = CreateStatement();
+            String query = "select * from T_BOOKINGS where C_STATE=2;";
+            if(stmnt != null){
+                var rs = stmnt.executeQuery(query);
+                while (rs.next()) {
+                    result.add(new Booking().Map(rs));
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        return result;
     }
 
 

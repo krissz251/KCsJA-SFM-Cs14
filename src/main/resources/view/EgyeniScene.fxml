@@ -138,12 +138,12 @@
             </RadioButton>
          </children>
       </VBox>
-      <Button layoutX="687.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleTovabbPushed" style="-fx-background-color: #DAA520;" text="Tovább" textFill="WHITE">
+      <Button layoutX="687.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleTovabbPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Tovább" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="113.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520;" text="Vissza" textFill="WHITE">
+      <Button layoutX="113.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>

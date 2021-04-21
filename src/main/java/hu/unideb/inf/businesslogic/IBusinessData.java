@@ -4,6 +4,8 @@ import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 
+import java.util.List;
+
 public interface IBusinessData {
     //bejelentkezés
     boolean Login(String username, String password);
@@ -14,6 +16,8 @@ public interface IBusinessData {
     FullOrderResult AddFullOrder(FullOrderRequest request);
     //visszaad egy komplett rendelés modelt id alapján
     FullOrderResult GetFullOrder(int id);
+    //visszaadja a foglalt asztalokat
+    List<Booking> GetActiveBookings();
 
     GetUsersListResult GetUsersList(GetUsersListRequest request);
     GetOrdersListResult GetOrdersList(GetOrdersListRequest request);

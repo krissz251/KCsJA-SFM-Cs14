@@ -19,12 +19,12 @@
          </font>
       </Text>
       <Text fill="WHITE" layoutX="33.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet ©" />
-      <Button layoutX="273.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleEgyeniButtonPushed" style="-fx-background-color: #DAA520;" text="Kívánság pizza összeállítása" textFill="WHITE">
+      <Button layoutX="273.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleEgyeniButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Kívánság pizza összeállítása" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="571.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleTovabbALeadashoz" style="-fx-background-color: #DAA520;" text="Tovább a leadáshoz" textFill="WHITE">
+      <Button layoutX="571.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleTovabbALeadashoz" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Tovább a leadáshoz" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
@@ -194,7 +194,7 @@
             </CheckBox>
          </children>
       </HBox>
-      <Button layoutX="33.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520;" text="Vissza" textFill="WHITE">
+      <Button layoutX="33.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>

@@ -11,14 +11,12 @@ public class Booking implements IEntity<Booking> {
     public int Id;
     public String Name;
     public BookingState State;
-    public Date Date;
     public int Table;
     @Override
     public Booking Map(ResultSet rs) {
         try {
             Id = rs.getInt("C_ID");
             Name = rs.getString("C_NAME");
-            Date = Date.valueOf(rs.getString("C_DATE"));
             State = BookingState.fromInt(rs.getInt("C_STATE"));
             Table = rs.getInt("C_TABLE");
         } catch (SQLException throwables) {
