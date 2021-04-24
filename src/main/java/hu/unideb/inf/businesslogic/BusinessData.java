@@ -5,13 +5,14 @@ import hu.unideb.inf.businesslogic.Enums.BookingState;
 import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
+import hu.unideb.inf.businesslogic.Interfaces.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 import hu.unideb.inf.dataaccess.SQLContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusinessData implements IBusinessData{
+public class BusinessData implements IBookingData, IOrderData, IUserData{
 
     @Override
     public boolean Login(String username, String password){
@@ -90,7 +91,10 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public List<Booking> GetActiveBookings() {
-        return new SQLContext().GetActiveBookings();
+		SQLContext context =new SQLContext();
+		var result = context.GetActiveBookings();
+		context.Dispose();
+        return result;
     }
 
     @Override
@@ -120,7 +124,13 @@ public class BusinessData implements IBusinessData{
     }
 
     @Override
-    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) { return null; }
+    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) {
+		SQLContext context = new SQLContext();        
+        var result = context.GetBookings(request);       
+        context.Dispose();
+        request.PageCount = result.PageCount;
+        return new GetBookingsListResult(result.Bookings,request); 
+	}
 
     @Override
     public GetItemsListResult GetItemsList(GetItemsListRequest request) {
