@@ -226,7 +226,39 @@ public class SQLContext extends PersistentContextBase{
         }
         return new OrdersResult(result,count);
     }
-
+	@Override
+    public BookingsResult GetBookings(IPaged request) {
+        ArrayList<Booking> result = new ArrayList<Booking>();
+        int count = 0;
+        try {
+            var stmnt = CreateStatement();
+            
+            String query = "select * from T_BOOKINGS limit "+(request.CurrentPage*request.PageSize)+", "+request.PageSize;
+            System.out.println(query);
+            String countQuery = "select count(C_ID) as count from T_BOOKINGS";
+            System.out.println(countQuery);
+            if(stmnt != null){
+                
+                var rs = stmnt.executeQuery(query);
+                
+                while (rs.next()) {                                       
+                    result.add(new Booking().Map(rs));
+                }
+                
+                rs = stmnt.executeQuery(countQuery);
+                
+                if(rs.next()) {
+                    int c = rs.getInt("count");
+                    count = c / request.PageSize + c % request.PageSize > 0 ? 1 : 0;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        return new BookingsResult(result,count);
+    }
+	
     @Override
     public OrderItemsResult GetOrderItems(IPaged request) {
         ArrayList<OrderItem> result = new ArrayList<OrderItem>();
