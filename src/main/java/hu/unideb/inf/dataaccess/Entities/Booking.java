@@ -24,4 +24,16 @@ public class Booking implements IEntity<Booking> {
         }
         return this;
     }
+	public int getId(){
+		return Id;
+	}
+	public String getName(){
+		return Name;
+	}
+	public BookingState getState(){
+		return State;
+	}
+	public int getTable(){
+		return Table;
+	}
 }

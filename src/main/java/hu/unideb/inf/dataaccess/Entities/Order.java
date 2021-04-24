@@ -24,4 +24,16 @@ public class Order implements IEntity<Order> {
         }
         return this;
     }
+	public int getId(){
+		return Id;
+	}
+	public String getName(){
+		return Name;
+	}
+	public Date getDate(){
+		return Date;
+	}
+	public OrderState getState(){
+		return State;
+	}
 }

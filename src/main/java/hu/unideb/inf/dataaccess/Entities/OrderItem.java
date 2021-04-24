@@ -20,5 +20,13 @@ public class OrderItem implements IEntity<OrderItem> {
         }
         return this;
     }
-
+	public int getId(){
+		return Id;
+	}
+	public int getOrderId(){
+		return OrderId;
+	}
+	public int getItemId(){
+		return ItemId;
+	}
 }
