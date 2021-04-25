@@ -7,13 +7,13 @@ public enum ItemType {
     Sauce;
     public static ItemType fromInt(int i){
         switch(i){
-            case 1:{
+            case 0:{
                 return Base;
             }
-            case 2:{
+            case 1:{
                 return Topping;
             }
-            case 3:{
+            case 2:{
                 return Sauce;
             }
             default:{
@@ -24,16 +24,16 @@ public enum ItemType {
     public static int toInt(ItemType val){
         switch(val){
             case Base:{
-                return 1;
+                return 0;
             }
             case Topping:{
-                return 2;
+                return 1;
             }
             case Sauce:{
-                return 3;
+                return 2;
             }
             default:{
-                return 0;
+                return -1;
             }
         }
     }

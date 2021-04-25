@@ -7,6 +7,7 @@ package hu.unideb.inf.controller;
 
 import hu.unideb.inf.businesslogic.BusinessData;
 import hu.unideb.inf.businesslogic.Enums.ItemType;
+import hu.unideb.inf.businesslogic.Interfaces.IOrderData;
 import hu.unideb.inf.businesslogic.RequestModels.GetItemsListRequest;
 import hu.unideb.inf.businesslogic.ResultModels.GetItemsListResult;
 import hu.unideb.inf.dataaccess.Entities.Item;
@@ -96,8 +97,7 @@ public class EgyeniFeltetSceneController implements Initializable {
     private CheckBox hatodikCheckbox;
     
     
-    BusinessData bsd= new BusinessData();
-    GetItemsListResult ItemList=bsd.GetItemsList(new GetItemsListRequest(0,11));
+   
            
        
     @FXML
@@ -126,6 +126,8 @@ public class EgyeniFeltetSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         IOrderData bsd= new BusinessData();
+    GetItemsListResult ItemList=bsd.GetItemsList(new GetItemsListRequest(0,11));
         List<Item> toRemove = new ArrayList();
         for(Item item: ItemList.Collection){
            if(item.Type!=ItemType.Topping){

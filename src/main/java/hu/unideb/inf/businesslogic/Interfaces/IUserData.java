@@ -3,7 +3,7 @@ import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 
-public interface IBookingData {
+public interface IUserData {
     //bejelentkezés
     boolean Login(String username, String password);
     GetUsersListResult GetUsersList(GetUsersListRequest request);

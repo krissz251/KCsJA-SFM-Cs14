@@ -6,6 +6,7 @@
 package hu.unideb.inf.controller;
 
 import hu.unideb.inf.businesslogic.BusinessData;
+import hu.unideb.inf.businesslogic.Interfaces.IOrderData;
 import hu.unideb.inf.businesslogic.RequestModels.GetItemsListRequest;
 import hu.unideb.inf.businesslogic.RequestModels.GetUsersListRequest;
 import hu.unideb.inf.businesslogic.ResultModels.GetItemsListResult;
@@ -54,11 +55,6 @@ public class FeltetekListazasaSceneController implements Initializable {
     
     
     
-    BusinessData bsd= new BusinessData();
-    
-    GetItemsListResult ItemList=bsd.GetItemsList(new GetItemsListRequest(0,11));
-    
-   ObservableList<Item> olist= FXCollections.observableArrayList(ItemList.Collection);
     
     
     @FXML
@@ -91,12 +87,31 @@ public class FeltetekListazasaSceneController implements Initializable {
     
     @FXML
     void handleFeltetekBetoltesePushed(ActionEvent event) {
+        IOrderData bsd= new BusinessData();
+    
+    GetItemsListResult ItemList=bsd.GetItemsList(new GetItemsListRequest(0,11));
+    
+   ObservableList<Item> olist= FXCollections.observableArrayList(ItemList.Collection);
+    
             Nev.setCellValueFactory(new PropertyValueFactory<Item,String>("Name"));
         Mennyiseg.setCellValueFactory(new PropertyValueFactory<Item,Integer>("Amount"));
         Ar.setCellValueFactory(new PropertyValueFactory<Item,Integer>("Price"));
         
         Table.setItems(olist);
     }
+    
+    @FXML
+    void handleTovabbaFoglalasokButtonPushed(ActionEvent event) throws IOException {
+Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/FoglalasListazasScene.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODOs

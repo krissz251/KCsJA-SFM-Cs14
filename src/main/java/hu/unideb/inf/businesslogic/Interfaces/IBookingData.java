@@ -11,4 +11,5 @@ public interface IBookingData {
     Booking GetBookingById(int id);
     Booking AddBooking(AddBookingRequest request);
     Booking SetBooking(SetBookingRequest request);
+    void DeleteBookingById(int id);
 }

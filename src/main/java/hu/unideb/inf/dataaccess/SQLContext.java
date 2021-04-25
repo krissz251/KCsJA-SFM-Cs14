@@ -3,10 +3,7 @@ package hu.unideb.inf.dataaccess;
 import hu.unideb.inf.businesslogic.Enums.BookingState;
 import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.Interfaces.IPaged;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.ItemsResult;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.OrderItemsResult;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.OrdersResult;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.UsersResult;
+import hu.unideb.inf.businesslogic.ResultModels.DaoResults.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 
 import java.sql.Connection;

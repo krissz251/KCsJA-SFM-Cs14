@@ -6,6 +6,7 @@
 package hu.unideb.inf.controller;
 
 import hu.unideb.inf.businesslogic.BusinessData;
+import hu.unideb.inf.businesslogic.Interfaces.IUserData;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -135,7 +136,7 @@ Optional<Pair<String, String>> result = dialog.showAndWait();
 
 result.ifPresent(usernamePassword -> {
     //System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
-    BusinessData bsd = new BusinessData();
+    IUserData bsd = new BusinessData();
     if(bsd.Login(usernamePassword.getKey(),usernamePassword.getValue())){
         try {
             //System.out.println("Sikeres bejelentkezés.");

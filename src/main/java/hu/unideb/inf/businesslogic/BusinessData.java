@@ -233,6 +233,14 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         context.DeleteOrderItemById(id);
         context.Dispose();
     }
+    
+    
+     @Override
+    public void DeleteBookingById(int id) {
+        SQLContext context = new SQLContext();
+        context.DeleteBookingById(id);
+        context.Dispose();
+    }
 
     @Override
     public User SetUser(SetUserRequest request){

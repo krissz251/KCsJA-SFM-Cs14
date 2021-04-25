@@ -6,6 +6,7 @@
 package hu.unideb.inf.controller;
 
 import hu.unideb.inf.businesslogic.BusinessData;
+import hu.unideb.inf.businesslogic.Interfaces.IUserData;
 import hu.unideb.inf.businesslogic.RequestModels.AddUserRequest;
 import hu.unideb.inf.dataaccess.Entities.User;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class DolgozoHozzadasaController implements Initializable {
     @FXML
     private PasswordField jelszoPasswordField;
     
-    BusinessData bsd= new BusinessData();
+    
     
     private Stage stagew;
 
@@ -62,6 +63,7 @@ public class DolgozoHozzadasaController implements Initializable {
                 alert.showAndWait();
         
         }else{
+            IUserData bsd= new BusinessData();
           AddUserRequest user= new AddUserRequest(FelhasznaloTextField.getText(),jelszoPasswordField.getText());
           User newuser=bsd.AddUser(user);
           System.out.println(newuser.Name);
