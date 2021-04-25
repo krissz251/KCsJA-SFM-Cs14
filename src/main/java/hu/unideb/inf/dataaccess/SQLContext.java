@@ -356,10 +356,11 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_ORDER set C_NAME = '%s', C_STATE = %d, C_DATE = '%s' where C_ID = %d",
+                    "update T_ORDER set C_NAME = '%s', C_STATE = %d, C_DATE = '%s', C_TITLE = '%s' where C_ID = %d",
                     newValues.Name,
                     OrderState.toInt(newValues.State),
                     newValues.Date,
+                    newValues.Title,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
@@ -422,14 +423,15 @@ public class SQLContext extends PersistentContextBase{
     }
 
     @Override
-    public Order AddOrder(Order newBooking) {
+    public Order AddOrder(Order newOrder) {
         Order result = null;
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERS (C_NAME, C_STATE) VALUES ('%s',%d);",
-                    newBooking.Name,
-                    OrderState.toInt(newBooking.State));
+                    "INSERT INTO T_ORDERS (C_NAME, C_STATE, C_TITLE) VALUES ('%s',%d,'%s');",
+                    newOrder.Name,
+                    newOrder.Title,
+                    OrderState.toInt(newOrder.State));
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);

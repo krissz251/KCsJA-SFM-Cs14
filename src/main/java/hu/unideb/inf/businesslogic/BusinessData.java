@@ -2,6 +2,7 @@ package hu.unideb.inf.businesslogic;
 
 
 import hu.unideb.inf.businesslogic.Enums.BookingState;
+import hu.unideb.inf.businesslogic.Enums.ItemType;
 import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
@@ -43,6 +44,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         Order order = new Order();
         order.Name = request.Name;
         order.State = OrderState.InProgress;
+        order.Title = request.Title;
         Order resultOrder = context.AddOrder(order);
         List<OrderItem> orderItemsResult = new ArrayList<>();
         if(resultOrder != null){
@@ -61,7 +63,8 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
                     orderItemsResult,
                     fullPrice,
                     resultOrder.Name,
-                    resultOrder.Date
+                    resultOrder.Date,
+                    resultOrder.Title
             );
 
         }
@@ -82,7 +85,8 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
                     orderItemsResult.OrderItems,
                     fullPrice,
                     resultOrder.Name,
-                    resultOrder.Date
+                    resultOrder.Date,
+                    resultOrder.Title
             );
         }
         context.Dispose();
@@ -235,6 +239,13 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
     }
 
     @Override
+    public void DeleteBookingById(int id) {
+        SQLContext context = new SQLContext();
+        context.DeleteBookingById(id);
+        context.Dispose();
+    }
+
+    @Override
     public User SetUser(SetUserRequest request){
         SQLContext context = new SQLContext();
         var user = context.GetUserById(request.Id);
@@ -251,8 +262,57 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         var order = context.GetOrderById(request.Id);
         order.Name = request.Name;
         order.State = request.State;
+        order.Title = request.Title;
         var result = context.SetOrder(order);
         context.Dispose();
+        return result;
+    }
+
+    @Override
+    public List<FullOrderRequest> GetListOfDefaultOrders() {
+        List<FullOrderRequest> result = new ArrayList<>();
+        List<Integer> itemsInOrder = new ArrayList<>();
+        itemsInOrder.add(1);
+        itemsInOrder.add(10);
+        itemsInOrder.add(4);
+        itemsInOrder.add(5);
+        itemsInOrder.add(8);
+        result.add(new FullOrderRequest(itemsInOrder,"","Szalámis"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(11);
+        itemsInOrder.add(12);
+        itemsInOrder.add(4);
+        itemsInOrder.add(6);
+        result.add(new FullOrderRequest(itemsInOrder,"","Gombás"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(10);
+        itemsInOrder.add(9);
+        itemsInOrder.add(4);
+        itemsInOrder.add(6);
+        itemsInOrder.add(12);
+        result.add(new FullOrderRequest(itemsInOrder,"","Olaszos"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(10);
+        itemsInOrder.add(4);
+        itemsInOrder.add(5);
+        itemsInOrder.add(6);
+        itemsInOrder.add(7);
+        itemsInOrder.add(8);
+        itemsInOrder.add(9);
+        itemsInOrder.add(12);
+        result.add(new FullOrderRequest(itemsInOrder,"","Extra"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(11);
+        itemsInOrder.add(4);
+        itemsInOrder.add(7);
+        itemsInOrder.add(8);
+        itemsInOrder.add(12);
+        result.add(new FullOrderRequest(itemsInOrder,"","Vega"));
+        //result.add(new FullOrderRequest(itemsInOrder,"","Kívánság"));
         return result;
     }
 

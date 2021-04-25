@@ -12,11 +12,13 @@ public class FullOrderResult {
     public int FullPrice;
     public String Name;
     public Date Date;
-    public FullOrderResult(int id,List<OrderItem> orderItems,int fullPrice,String name,Date date){
+    public String Title;
+    public FullOrderResult(int id,List<OrderItem> orderItems,int fullPrice,String name,Date date,String title){
         this.Id = id;
         this.OrderItems = orderItems;
         this.FullPrice = fullPrice;
         this.Name = name;
         this.Date = date;
+        this.Title = title;
     }
 }

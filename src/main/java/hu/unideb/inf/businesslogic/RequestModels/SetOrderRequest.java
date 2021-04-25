@@ -7,9 +7,11 @@ public class SetOrderRequest {
     public int Id;
     public String Name;
     public OrderState State;
-    public SetOrderRequest(int id, String name, OrderState state){
+    public String Title;
+    public SetOrderRequest(int id, String name, OrderState state, String title){
         this.Id = id;
         this.Name = name;
         this.State = state;
+        this.Title = title;
     }
 }

@@ -3,6 +3,8 @@ import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 
+import java.util.List;
+
 public interface IOrderData {
     //checkout oldalhoz tartozó véglegesített adatok
     //rendelés információ, végösszeg,stb
@@ -21,4 +23,5 @@ public interface IOrderData {
     OrderItem AddOrderItem(AddOrderItemRequest request);
     void DeleteOrderItemById(int id);
     Order SetOrder(SetOrderRequest request);
+    List<FullOrderRequest> GetListOfDefaultOrders();
 }

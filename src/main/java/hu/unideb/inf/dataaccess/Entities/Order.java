@@ -12,6 +12,7 @@ public class Order implements IEntity<Order> {
     public String Name;
     public Date Date;
     public OrderState State;
+    public String Title;
     @Override
     public Order Map(ResultSet rs) {
         try {
@@ -19,6 +20,7 @@ public class Order implements IEntity<Order> {
             Name = rs.getString("C_NAME");
             Date = Date.valueOf(rs.getString("C_DATE"));
             State = OrderState.fromInt(rs.getInt("C_STATE"));
+            Title = rs.getString("C_TITLE");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -36,4 +38,5 @@ public class Order implements IEntity<Order> {
 	public OrderState getState(){
 		return State;
 	}
+	public String getTitle(){ return Title; }
 }
