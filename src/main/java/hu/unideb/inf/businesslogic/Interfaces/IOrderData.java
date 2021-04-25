@@ -13,6 +13,7 @@ public interface IOrderData {
     FullOrderResult GetFullOrder(int id);
     GetOrdersListResult GetOrdersList(GetOrdersListRequest request);
     GetItemsListResult GetItemsList(GetItemsListRequest request);
+    GetOrderItemsListResult GetOrderItemsList(GetOrderItemsListRequest request);
     Order GetOrderById(int id);
     OrderItem GetOrderItemById(int id);
     Item GetItemById(int id);
