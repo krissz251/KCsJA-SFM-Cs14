@@ -102,7 +102,7 @@ public class RendelesSceneController implements Initializable {
     
     @FXML
     void handleTovabbALeadashoz(ActionEvent event) throws IOException {
-        if(!rbSzalamis.isSelected()||!rbGombas.isSelected()||!rbOlaszos.isSelected()||!rbExtra.isSelected()||!rbVega.isSelected()){
+        if(!rbSzalamis.isSelected()&&!rbGombas.isSelected()&&!rbOlaszos.isSelected()&&!rbExtra.isSelected()&&!rbVega.isSelected()){
             Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Hiba a pizza kiválasztásánál!");
                 alert.setHeaderText("A rendeléshez válassz egy pizzát vagy állítsd össze sajátod!");
