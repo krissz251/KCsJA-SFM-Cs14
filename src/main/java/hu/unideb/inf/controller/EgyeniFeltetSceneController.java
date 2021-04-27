@@ -150,7 +150,7 @@ public class EgyeniFeltetSceneController implements Initializable {
           this.list.add(lista.get(5).Id);
       }
       
-      FullOrderRequest fullorderrequest=new FullOrderRequest(list,"","Kívánság");
+      FullOrderRequest fullorderrequest=new FullOrderRequest(list,"","Kívánság"," ");
       
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RendelesLeadasaScene.fxml") );
         Parent root = loader.load();  

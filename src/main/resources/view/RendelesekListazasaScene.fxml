@@ -28,6 +28,7 @@
             <TableColumn fx:id="Pizza" prefWidth="86.4000244140625" text="Pizza" />
             <TableColumn fx:id="Datum" prefWidth="108.79998779296875" text="Dátum" />
             <TableColumn fx:id="Ar" prefWidth="54.4000244140625" text="Ár" />
+            <TableColumn fx:id="Megjegyzes" prefWidth="120" text="Megjegyzés" />
          </columns>
       </TableView>
       <Button layoutX="60.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleRendelesekBetoltesePushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Adatok betöltése" textFill="WHITE">

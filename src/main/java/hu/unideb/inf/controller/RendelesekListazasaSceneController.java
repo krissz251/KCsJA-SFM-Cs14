@@ -63,6 +63,9 @@ public class RendelesekListazasaSceneController implements Initializable {
     @FXML
     private TableColumn<Order, Date> Datum;
     
+    @FXML
+    private TableColumn<Order, String> Megjegyzes;
+    
        @FXML
     private TableColumn<?, ?> Ar;
 
@@ -76,6 +79,7 @@ public class RendelesekListazasaSceneController implements Initializable {
         Pizza.setCellValueFactory(new PropertyValueFactory<Order,String>("Title"));
         Statusz.setCellValueFactory(new PropertyValueFactory<Order,OrderState>("State"));
        Datum.setCellValueFactory(new PropertyValueFactory<Order,Date>("Date"));
+       Megjegyzes.setCellValueFactory(new PropertyValueFactory<Order,String>("Description"));
         
         
         Table.setItems(olist);

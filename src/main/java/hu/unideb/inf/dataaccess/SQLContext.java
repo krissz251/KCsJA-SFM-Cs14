@@ -427,10 +427,12 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERS (C_NAME, C_STATE, C_TITLE) VALUES ('%s',%d,'%s');",
+                    "INSERT INTO T_ORDERS (C_NAME, C_STATE, C_TITLE, C_DESCRIPTION) VALUES ('%s',%d,'%s', '%s');",
                     newOrder.Name,
                     OrderState.toInt(newOrder.State),
-                    newOrder.Title);
+                    newOrder.Title,
+                    newOrder.Description);
+            
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);

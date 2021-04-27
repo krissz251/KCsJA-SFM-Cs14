@@ -8,9 +8,11 @@ public class FullOrderRequest {
     public List<Integer> OrderItems;
     public String Name;
     public String Title;
-    public FullOrderRequest(List<Integer> orderItems,String name, String title){
+    public String Description;
+    public FullOrderRequest(List<Integer> orderItems,String name, String title, String description){
         this.OrderItems = orderItems;
         this.Name = name;
         this.Title = title;
+        this.Description = description;
     }
 }
