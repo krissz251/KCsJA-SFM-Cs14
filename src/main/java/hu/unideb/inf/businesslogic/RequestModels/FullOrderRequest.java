@@ -7,8 +7,10 @@ import java.util.List;
 public class FullOrderRequest {
     public List<Integer> OrderItems;
     public String Name;
-    public FullOrderRequest(List<Integer> orderItems,String name){
+    public String Title;
+    public FullOrderRequest(List<Integer> orderItems,String name, String title){
         this.OrderItems = orderItems;
         this.Name = name;
+        this.Title = title;
     }
 }
