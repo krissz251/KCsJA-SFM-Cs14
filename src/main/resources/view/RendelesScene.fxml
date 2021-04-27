@@ -2,12 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -39,27 +41,34 @@
                   <Image url="@../images/extraextra.jpg" />
                </image>
             </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Extra: ">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="14.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="14.0" />
-               </HBox.margin>
-            </Text>
-            <Label fx:id="extraFeltet" prefHeight="22.0" prefWidth="541.0" text="Feltétek..." textFill="WHITE">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="12.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="11.0" />
-               </HBox.margin>
-            </Label>
-            <CheckBox fx:id="negyedikCheckbox" alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="9.0">
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="extraLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="extraFeltet" prefHeight="22.0" prefWidth="510.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbExtra" mnemonicParsing="false">
                <HBox.margin>
                   <Insets right="20.0" top="15.0" />
                </HBox.margin>
-            </CheckBox>
+               <toggleGroup>
+                  <ToggleGroup fx:id="tgPizzak" />
+               </toggleGroup>
+            </RadioButton>
          </children>
       </HBox>
       <HBox layoutX="44.0" layoutY="179.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
@@ -72,27 +81,31 @@
                   <Image url="@../images/gombas.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gombás: ">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="14.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="14.0" />
-               </HBox.margin>
-            </Text>
-            <Label fx:id="gombasFeltet" prefHeight="22.0" prefWidth="531.0" text="Feltétek..." textFill="WHITE">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="12.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="12.0" />
-               </HBox.margin>
-            </Label>
-            <CheckBox fx:id="masodikCheckbox" alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="9.0">
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="gombasLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="gombasFeltet" prefHeight="22.0" prefWidth="512.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbGombas" mnemonicParsing="false" toggleGroup="$tgPizzak">
                <HBox.margin>
                   <Insets right="20.0" top="15.0" />
                </HBox.margin>
-            </CheckBox>
+            </RadioButton>
          </children>
       </HBox>
       <HBox layoutX="44.0" layoutY="257.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
@@ -105,27 +118,31 @@
                   <Image url="@../images/extra.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Olaszos: ">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="14.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="14.0" />
-               </HBox.margin>
-            </Text>
-            <Label fx:id="olaszosFeltet" prefHeight="22.0" prefWidth="526.0" text="Feltétek..." textFill="WHITE">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="12.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="15.0" />
-               </HBox.margin>
-            </Label>
-            <CheckBox fx:id="harmadikCheckbox" alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="9.0">
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="olaszosLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="olaszosFeltet" prefHeight="22.0" prefWidth="510.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbOlaszos" mnemonicParsing="false" toggleGroup="$tgPizzak">
                <HBox.margin>
                   <Insets right="20.0" top="15.0" />
                </HBox.margin>
-            </CheckBox>
+            </RadioButton>
          </children>
       </HBox>
       <HBox layoutX="44.0" layoutY="102.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
@@ -138,27 +155,31 @@
                   <Image url="@../images/szalami.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" Szalámis: ">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="14.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="14.0" />
-               </HBox.margin>
-            </Text>
-            <Label fx:id="szalamisFeltet" prefHeight="22.0" prefWidth="514.0" text="Feltétek..." textFill="WHITE">
-               <HBox.margin>
-                  <Insets top="11.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="12.0" />
-               </font>
-            </Label>
-            <CheckBox fx:id="elsoCheckbox" alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="9.0">
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="szalamisLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="86.0" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="szalamisFeltet" contentDisplay="CENTER" prefHeight="22.0" prefWidth="514.0" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbSzalamis" mnemonicParsing="false" toggleGroup="$tgPizzak">
                <HBox.margin>
                   <Insets right="20.0" top="15.0" />
                </HBox.margin>
-            </CheckBox>
+            </RadioButton>
          </children>
       </HBox>
       <HBox layoutX="44.0" layoutY="412.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
@@ -171,27 +192,31 @@
                   <Image url="@../images/vegetarianusjpg.jpg" />
                </image>
             </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Vega: ">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="14.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="14.0" />
-               </HBox.margin>
-            </Text>
-            <Label fx:id="vegaFeltet" prefHeight="22.0" prefWidth="541.0" text="Feltétek..." textFill="WHITE">
-               <font>
-                  <Font name="Lucida Handwriting Italic" size="12.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="13.0" />
-               </HBox.margin>
-            </Label>
-            <CheckBox fx:id="otodikCheckbox" alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="9.0">
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="vegaLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="vegaFeltet" prefHeight="22.0" prefWidth="507.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbVega" mnemonicParsing="false" toggleGroup="$tgPizzak">
                <HBox.margin>
                   <Insets right="20.0" top="15.0" />
                </HBox.margin>
-            </CheckBox>
+            </RadioButton>
          </children>
       </HBox>
       <Button layoutX="33.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza" textFill="WHITE">

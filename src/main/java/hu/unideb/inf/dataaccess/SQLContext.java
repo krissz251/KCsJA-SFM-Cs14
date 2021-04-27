@@ -162,7 +162,7 @@ public class SQLContext extends PersistentContextBase{
             {
                 var rs = stmnt.executeQuery(query);
                 if(rs.next()) {
-                    return new Item().Map(stmnt.executeQuery(query));
+                    return new Item().Map(rs);
                 }
             }
         }
@@ -231,9 +231,7 @@ public class SQLContext extends PersistentContextBase{
             var stmnt = CreateStatement();
             
             String query = "select * from T_BOOKINGS limit "+(request.CurrentPage*request.PageSize)+", "+request.PageSize;
-            System.out.println(query);
             String countQuery = "select count(C_ID) as count from T_BOOKINGS";
-            System.out.println(countQuery);
             if(stmnt != null){
                 
                 var rs = stmnt.executeQuery(query);
@@ -334,10 +332,11 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_BOOKINGS set C_NAME = '%s', C_STATE = %d, C_TABLE = %d where C_ID = %d",
+                    "update T_BOOKINGS set C_NAME = '%s', C_STATE = %d, C_TABLE = %d, C_PHONE = '%s' where C_ID = %d",
                     newValues.Name,
                     BookingState.toInt(newValues.State),
                     newValues.Table,
+                    newValues.Phone,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
@@ -403,10 +402,11 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_TABLE) VALUES ('%s',%d,%d);",
+                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_TABLE, C_PHONE) VALUES ('%s',%d,%d,'%s');",
                     newBooking.Name,
                     BookingState.toInt(newBooking.State),
-                    newBooking.Table);
+                    newBooking.Table,
+                    newBooking.Phone);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);
@@ -430,8 +430,8 @@ public class SQLContext extends PersistentContextBase{
             String query = String.format(
                     "INSERT INTO T_ORDERS (C_NAME, C_STATE, C_TITLE) VALUES ('%s',%d,'%s');",
                     newOrder.Name,
-                    newOrder.Title,
-                    OrderState.toInt(newOrder.State));
+                    OrderState.toInt(newOrder.State),
+                    newOrder.Title);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);

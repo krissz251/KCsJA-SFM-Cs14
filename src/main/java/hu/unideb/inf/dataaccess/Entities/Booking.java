@@ -12,6 +12,7 @@ public class Booking implements IEntity<Booking> {
     public String Name;
     public BookingState State;
     public int Table;
+    public String Phone;
     @Override
     public Booking Map(ResultSet rs) {
         try {
@@ -19,6 +20,7 @@ public class Booking implements IEntity<Booking> {
             Name = rs.getString("C_NAME");
             State = BookingState.fromInt(rs.getInt("C_STATE"));
             Table = rs.getInt("C_TABLE");
+            Phone = rs.getString("C_PHONE");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -35,5 +37,8 @@ public class Booking implements IEntity<Booking> {
 	}
 	public int getTable(){
 		return Table;
+	}
+	public String getPhone(){
+		return Phone;
 	}
 }

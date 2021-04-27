@@ -277,14 +277,14 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(4);
         itemsInOrder.add(5);
         itemsInOrder.add(8);
-        result.add(new FullOrderRequest(itemsInOrder,"","Szalámis"));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Szalámis"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(11);
         itemsInOrder.add(12);
         itemsInOrder.add(4);
         itemsInOrder.add(6);
-        result.add(new FullOrderRequest(itemsInOrder,"","Gombás"));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Gombás"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(10);
@@ -292,7 +292,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(4);
         itemsInOrder.add(6);
         itemsInOrder.add(12);
-        result.add(new FullOrderRequest(itemsInOrder,"","Olaszos"));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Olaszos"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(10);
@@ -302,8 +302,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(7);
         itemsInOrder.add(8);
         itemsInOrder.add(9);
-        itemsInOrder.add(12);
-        result.add(new FullOrderRequest(itemsInOrder,"","Extra"));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Extra"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(11);
@@ -311,7 +310,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(7);
         itemsInOrder.add(8);
         itemsInOrder.add(12);
-        result.add(new FullOrderRequest(itemsInOrder,"","Vega"));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Vega"));
         //result.add(new FullOrderRequest(itemsInOrder,"","Kívánság"));
         return result;
     }
@@ -323,6 +322,13 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         booking.State = request.State;
         var result = context.SetBooking(booking);
         context.Dispose();
+        return result;
+    }
+    private <T> List<T> CloneList(List<T> list){
+        List<T> result = new ArrayList<>();
+        for (var item: list) {
+            result.add(item);
+        }
         return result;
     }
 }
