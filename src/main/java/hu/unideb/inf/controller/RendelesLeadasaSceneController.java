@@ -5,6 +5,11 @@
  */
 package hu.unideb.inf.controller;
 
+import hu.unideb.inf.businesslogic.BusinessData;
+import hu.unideb.inf.businesslogic.Interfaces.IOrderData;
+import hu.unideb.inf.businesslogic.RequestModels.FullOrderRequest;
+import hu.unideb.inf.businesslogic.ResultModels.FullOrderResult;
+import hu.unideb.inf.dataaccess.Entities.OrderItem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -44,9 +50,32 @@ public class RendelesLeadasaSceneController implements Initializable {
     @FXML
     private TextArea megjegyzesTextArea;
     
+    private FullOrderRequest fullorderrequest;
+
+    public void setFullorderrequest(FullOrderRequest fullorderrequest) {
+        this.fullorderrequest = fullorderrequest;
+    }
+
+    public Label getVegosszegLabel() {
+        return vegosszegLabel;
+    }
+
+    
+    
+    
+    
     @FXML
     void handleRendelesLeadasa(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/UtolsoScene.fxml"));
+        if(nevTextField.getText().isEmpty()){
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Hiba a rendelés leadásánál!");
+                alert.setHeaderText("A név mező kitöltése kötelező!");
+                alert.showAndWait();
+        } else{
+           this.fullorderrequest.Name=nevTextField.getText();
+           IOrderData bsd= new BusinessData();
+          bsd.AddFullOrder(fullorderrequest);          
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/UtolsoScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -54,6 +83,7 @@ public class RendelesLeadasaSceneController implements Initializable {
         
         window.setScene(tableViewScene);
         window.show();
+        }
     }
     
     @FXML
@@ -70,7 +100,7 @@ public class RendelesLeadasaSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        /*TODO*/
     }    
     
 }

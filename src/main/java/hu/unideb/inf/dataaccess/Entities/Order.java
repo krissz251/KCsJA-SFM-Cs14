@@ -18,7 +18,7 @@ public class Order implements IEntity<Order> {
         try {
             Id = rs.getInt("C_ID");
             Name = rs.getString("C_NAME");
-            Date = Date.valueOf(rs.getString("C_DATE"));
+            //Date = Date.valueOf(rs.getString("C_DATE"));
             State = OrderState.fromInt(rs.getInt("C_STATE"));
             Title = rs.getString("C_TITLE");
         } catch (SQLException throwables) {

@@ -355,10 +355,9 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_ORDER set C_NAME = '%s', C_STATE = %d, C_DATE = '%s', C_TITLE = '%s' where C_ID = %d",
+                    "update T_ORDERS set C_NAME = '%s', C_STATE = %d, C_TITLE = '%s' where C_ID = %d",
                     newValues.Name,
                     OrderState.toInt(newValues.State),
-                    newValues.Date,
                     newValues.Title,
                     newValues.Id);
             if(stmnt != null){
