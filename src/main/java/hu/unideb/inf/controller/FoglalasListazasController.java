@@ -126,7 +126,8 @@ Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/FeltetekL
         
         }else{
             IBookingData bsd= new BusinessData();
-        bsd.DeleteBookingById(Table.getSelectionModel().getSelectedItem().Id);
+        //bsd.DeleteBookingById(Table.getSelectionModel().getSelectedItem().Id);
+        Booking b=bsd.SetBooking(new SetBookingRequest(Table.getSelectionModel().getSelectedItem().Id,BookingState.Free));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Státusz módosítva");
                 alert.setHeaderText("Az asztal szabad, újra foglalható.");
