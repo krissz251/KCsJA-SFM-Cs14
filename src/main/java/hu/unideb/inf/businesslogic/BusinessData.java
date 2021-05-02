@@ -2,7 +2,6 @@ package hu.unideb.inf.businesslogic;
 
 
 import hu.unideb.inf.businesslogic.Enums.BookingState;
-import hu.unideb.inf.businesslogic.Enums.ItemType;
 import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
@@ -46,6 +45,8 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         order.State = OrderState.InProgress;
         order.Title = request.Title;
         order.Description = request.Description;
+        order.Phone = request.Phone;
+        order.Address = request.Address;
         Order resultOrder = context.AddOrder(order);
         List<OrderItem> orderItemsResult = new ArrayList<>();
         if(resultOrder != null){
@@ -65,7 +66,10 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
                     fullPrice,
                     resultOrder.Name,
                     resultOrder.Date,
-                    resultOrder.Title
+                    resultOrder.Title,
+                    resultOrder.Phone,
+                    resultOrder.Description,
+                    resultOrder.Address
             );
 
         }
@@ -87,7 +91,10 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
                     fullPrice,
                     resultOrder.Name,
                     resultOrder.Date,
-                    resultOrder.Title
+                    resultOrder.Title,
+                    resultOrder.Phone,
+                    resultOrder.Description,
+                    resultOrder.Address
             );
         }
         context.Dispose();
@@ -220,6 +227,8 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         newBooking.State = BookingState.Booked;
         newBooking.Name = request.Name;
         newBooking.Table = request.Table;
+        newBooking.Phone = request.Phone;
+        newBooking.Description = request.Description;
         context.AddBooking(newBooking);
         context.Dispose();
         return newBooking;
@@ -261,9 +270,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
     public Order SetOrder(SetOrderRequest request) {
         SQLContext context = new SQLContext();
         var order = context.GetOrderById(request.Id);
-        order.Name = request.Name;
         order.State = request.State;
-        order.Title = request.Title;
         var result = context.SetOrder(order);
         context.Dispose();
         return result;
@@ -278,14 +285,14 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(4);
         itemsInOrder.add(5);
         itemsInOrder.add(8);
-        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Szalámis","Csipos nelkul"));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Szalámis"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(11);
         itemsInOrder.add(12);
         itemsInOrder.add(4);
         itemsInOrder.add(6);
-        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Gombás"," "));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Gombás"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(10);
@@ -293,7 +300,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(4);
         itemsInOrder.add(6);
         itemsInOrder.add(12);
-        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Olaszos"," "));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Olaszos"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(10);
@@ -303,7 +310,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(7);
         itemsInOrder.add(8);
         itemsInOrder.add(9);
-        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Extra"," "));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Extra"));
         itemsInOrder.clear();
         itemsInOrder.add(1);
         itemsInOrder.add(11);
@@ -311,7 +318,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         itemsInOrder.add(7);
         itemsInOrder.add(8);
         itemsInOrder.add(12);
-        result.add(new FullOrderRequest(CloneList(itemsInOrder),"","Vega"," "));
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Vegetáriánus"));
         //result.add(new FullOrderRequest(itemsInOrder,"","Kívánság"));
         return result;
     }
