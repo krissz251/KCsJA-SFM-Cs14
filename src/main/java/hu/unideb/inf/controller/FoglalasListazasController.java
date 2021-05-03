@@ -18,6 +18,7 @@ import hu.unideb.inf.dataaccess.Entities.Booking;
 import hu.unideb.inf.dataaccess.Entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,6 +51,12 @@ public class FoglalasListazasController implements Initializable {
 
     @FXML
     private TableColumn<Booking, String> Nev;
+    
+       @FXML
+    private TableColumn<Booking, Date> Date;
+    
+    @FXML
+    private TableColumn<Booking, String> Phone;
 
     @FXML
     private TableColumn<Booking, String> Asztal;
@@ -66,7 +73,8 @@ public class FoglalasListazasController implements Initializable {
         Nev.setCellValueFactory(new PropertyValueFactory<Booking,String>("Name"));
         Asztal.setCellValueFactory(new PropertyValueFactory<Booking,String>("Table"));
         Statusz.setCellValueFactory(new PropertyValueFactory<Booking,BookingState>("State"));
-        
+        Phone.setCellValueFactory(new PropertyValueFactory<Booking,String>("Phone"));
+        Date.setCellValueFactory(new PropertyValueFactory<Booking,Date>("Date"));
         
         Table.setItems(olist);
     }
