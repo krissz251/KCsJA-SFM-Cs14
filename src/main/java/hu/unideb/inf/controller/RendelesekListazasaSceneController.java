@@ -53,6 +53,9 @@ public class RendelesekListazasaSceneController implements Initializable {
 
     @FXML
     private TableColumn<Order,String> Nev;
+    
+    @FXML
+    private TableColumn<Order,String> Phone;
 
     @FXML
     private TableColumn<Order,OrderState> Statusz;
@@ -80,6 +83,7 @@ public class RendelesekListazasaSceneController implements Initializable {
         Statusz.setCellValueFactory(new PropertyValueFactory<Order,OrderState>("State"));
        Datum.setCellValueFactory(new PropertyValueFactory<Order,Date>("Date"));
        Megjegyzes.setCellValueFactory(new PropertyValueFactory<Order,String>("Description"));
+       Phone.setCellValueFactory(new PropertyValueFactory<Order,String>("Phone"));
         
         
         Table.setItems(olist);

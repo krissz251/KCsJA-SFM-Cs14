@@ -23,7 +23,8 @@
       <TableView fx:id="Table" layoutX="46.0" layoutY="170.0" prefHeight="299.0" prefWidth="700.0" style="-fx-border-color: #DAA520; -fx-border-width: 5;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <columns>
             <TableColumn fx:id="Cim" prefWidth="192.8000030517578" text="Cím" />
-            <TableColumn fx:id="Nev" prefWidth="131.199951171875" text="Név" />
+            <TableColumn fx:id="Nev" prefWidth="100.199951171875" text="Név" />
+            <TableColumn fx:id="Phone" prefWidth="120.199951171875" text="Telefonszám" />
             <TableColumn fx:id="Statusz" prefWidth="87.199951171875" text="Státusz" />
             <TableColumn fx:id="Pizza" prefWidth="86.4000244140625" text="Pizza" />
             <TableColumn fx:id="Datum" prefWidth="108.79998779296875" text="Dátum" />

@@ -46,6 +46,9 @@ public class RendelesLeadasaSceneController implements Initializable {
 
     @FXML
     private TextField cimTextField;
+    
+     @FXML
+    private TextField phoneTextField;
 
     @FXML
     private TextArea megjegyzesTextArea;
@@ -74,6 +77,7 @@ public class RendelesLeadasaSceneController implements Initializable {
         } else{
            this.fullorderrequest.Name=nevTextField.getText();
            this.fullorderrequest.Description = megjegyzesTextArea.getText();
+           this.fullorderrequest.Phone = phoneTextField.getText();
            IOrderData bsd= new BusinessData();
           bsd.AddFullOrder(fullorderrequest);          
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/UtolsoScene.fxml"));
