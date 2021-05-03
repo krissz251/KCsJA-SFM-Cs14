@@ -61,7 +61,7 @@ public class FoglalasListazasController implements Initializable {
      
    public void refreshFoglalasok(){ 
        IBookingData bsd= new BusinessData();
-        GetBookingsListResult BookingList=bsd.GetBookingsList(new GetBookingsListRequest(0,10));        
+        GetBookingsListResult BookingList=bsd.GetBookingsList(new GetBookingsListRequest(0,1000));        
         ObservableList<Booking> olist= FXCollections.observableArrayList(BookingList.Collection);      
         Nev.setCellValueFactory(new PropertyValueFactory<Booking,String>("Name"));
         Asztal.setCellValueFactory(new PropertyValueFactory<Booking,String>("Table"));

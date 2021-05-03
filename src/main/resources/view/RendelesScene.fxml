@@ -194,7 +194,7 @@
             </ImageView>
             <VBox prefHeight="50.0" prefWidth="622.0">
                <children>
-                  <Label fx:id="vegaLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="vegaLabel" prefHeight="23.0" prefWidth="117.0" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Lucida Handwriting Italic" size="14.0" />
                      </font>
