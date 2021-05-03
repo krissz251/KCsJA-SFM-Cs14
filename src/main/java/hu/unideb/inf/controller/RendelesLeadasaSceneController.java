@@ -78,6 +78,7 @@ public class RendelesLeadasaSceneController implements Initializable {
            this.fullorderrequest.Name=nevTextField.getText();
            this.fullorderrequest.Description = megjegyzesTextArea.getText();
            this.fullorderrequest.Phone = phoneTextField.getText();
+           this.fullorderrequest.Address = cimTextField.getText();         
            IOrderData bsd= new BusinessData();
           bsd.AddFullOrder(fullorderrequest);          
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/UtolsoScene.fxml"));

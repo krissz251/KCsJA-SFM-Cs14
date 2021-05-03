@@ -84,6 +84,7 @@ public class RendelesekListazasaSceneController implements Initializable {
        Datum.setCellValueFactory(new PropertyValueFactory<Order,Date>("Date"));
        Megjegyzes.setCellValueFactory(new PropertyValueFactory<Order,String>("Description"));
        Phone.setCellValueFactory(new PropertyValueFactory<Order,String>("Phone"));
+       Cim.setCellValueFactory(new PropertyValueFactory<Order,String>("Address"));
         
         
         Table.setItems(olist);
