@@ -13,7 +13,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/view/PizzaScene.fxml"));
-        Parent root= FXMLLoader.load(getClass().getResource("/view/PizzaScene.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/view/KezdoScene.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Pizza Planet");
         stage.setScene(scene);

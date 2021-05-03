@@ -100,7 +100,7 @@ public class RendelesSceneController implements Initializable {
     
     @FXML
     void handleEgyeniButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/EgyeniScene.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/EgyeniPizzaOsszeallitasaElsoScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -142,7 +142,7 @@ public class RendelesSceneController implements Initializable {
     
      @FXML
     void handleVisszaButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/PizzaScene.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/KezdoScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

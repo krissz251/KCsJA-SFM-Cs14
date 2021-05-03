@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class EgyeniSceneController implements Initializable {
+public class EgyeniPizzaOsszeallitasaElsoSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -83,9 +83,9 @@ public class EgyeniSceneController implements Initializable {
             else{
             list.add(3);}
         
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EgyeniFeltetScene.fxml") );
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EgyeniPizzaOsszeallitasaMasodikScene.fxml") );
         Parent root = loader.load();  
-        EgyeniFeltetSceneController egyeniFeltetSceneController = loader.getController();
+        EgyeniPizzaOsszeallitasaMasodikSceneController egyeniFeltetSceneController = loader.getController();
         egyeniFeltetSceneController.setList(list);
         Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

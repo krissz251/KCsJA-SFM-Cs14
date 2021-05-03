@@ -31,7 +31,7 @@ public class UtolsoSceneController implements Initializable {
     
     @FXML
     void handleVisszaButtonPushed(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/PizzaScene.fxml"));
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/KezdoScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

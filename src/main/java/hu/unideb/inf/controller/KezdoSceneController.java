@@ -50,7 +50,7 @@ import javafx.util.Pair;
  *
  * @author Jelenszky Ádám
  */
-public class PizzaSceneController implements Initializable {
+public class KezdoSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -149,7 +149,7 @@ result.ifPresent(usernamePassword -> {
             window.setScene(tableViewScene);
             window.show();
         } catch (IOException ex) {
-            Logger.getLogger(PizzaSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KezdoSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }

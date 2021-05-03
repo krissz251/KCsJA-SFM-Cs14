@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class AsztalVeglegesController implements Initializable {
+public class AsztalFoglalasVeglegesiteseController implements Initializable {
 
     /**
      * Initializes the controller class.

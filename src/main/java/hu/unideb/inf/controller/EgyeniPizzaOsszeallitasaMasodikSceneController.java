@@ -37,7 +37,7 @@ import javafx.stage.Stage;
  *
  * @author Jelenszky Ádám
  */
-public class EgyeniFeltetSceneController implements Initializable {
+public class EgyeniPizzaOsszeallitasaMasodikSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -164,7 +164,7 @@ public class EgyeniFeltetSceneController implements Initializable {
     
     @FXML
     void handleVisszaButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/EgyeniScene.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/EgyeniPizzaOsszeallitasaElsoScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

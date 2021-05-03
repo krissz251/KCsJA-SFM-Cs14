@@ -68,7 +68,7 @@ public class AsztalfoglalasSceneController implements Initializable {
     
     @FXML
     void handleVisszaButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/PizzaScene.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/KezdoScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -93,7 +93,7 @@ public class AsztalfoglalasSceneController implements Initializable {
     
     @FXML
     void handleVeglegesitesPushed(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AsztalVegleges.fxml") );
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AsztalFoglalasVeglegesiteseScene.fxml") );
         Parent root = loader.load();
         
         int tableid = 0;
@@ -130,7 +130,7 @@ public class AsztalfoglalasSceneController implements Initializable {
                 alert.setHeaderText("A foglaláshoz válassz ki egy asztalt!");
                 alert.showAndWait();
         } else{
-        AsztalVeglegesController asztalVeglegesController = loader.getController();
+        AsztalFoglalasVeglegesiteseController asztalVeglegesController = loader.getController();
         asztalVeglegesController.setTableId(tableid);
         Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
