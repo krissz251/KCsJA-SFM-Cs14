@@ -1,12 +1,18 @@
 package hu.unideb.inf.businesslogic;
 
 
+import hu.unideb.inf.businesslogic.Enums.BookingState;
+import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
+import hu.unideb.inf.businesslogic.Interfaces.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 import hu.unideb.inf.dataaccess.SQLContext;
 
-public class BusinessData implements IBusinessData{
+import java.util.ArrayList;
+import java.util.List;
+
+public class BusinessData implements IBookingData, IOrderData, IUserData{
 
     @Override
     public boolean Login(String username, String password){
@@ -18,17 +24,89 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public GetCheckoutResult GetCheckOut(int orderId) {
-        return null;
+        SQLContext context = new SQLContext();
+        var orderItemsResult = context.GetOrderItems(new GetOrdersListRequest(0,100));
+        int sum = 0;
+        for (var orderItem: orderItemsResult.OrderItems) {
+            var item = context.GetItemById(orderItem.ItemId);
+            if(item != null){
+                sum += item.Price;
+            }
+        }
+        return new GetCheckoutResult(sum);
     }
 
     @Override
     public FullOrderResult AddFullOrder(FullOrderRequest request) {
-        return null;
+        FullOrderResult result = null;
+        SQLContext context = new SQLContext();
+        Order order = new Order();
+        order.Name = request.Name;
+        order.State = OrderState.InProgress;
+        order.Title = request.Title;
+        order.Description = request.Description;
+        order.Phone = request.Phone;
+        order.Address = request.Address;
+        Order resultOrder = context.AddOrder(order);
+        List<OrderItem> orderItemsResult = new ArrayList<>();
+        if(resultOrder != null){
+            for (var item:request.OrderItems) {
+                OrderItem orderItem = new OrderItem();
+                orderItem.OrderId = resultOrder.Id;
+                orderItem.ItemId = item;
+                var resultItem = context.AddOrderItem(orderItem);
+                if(resultItem != null){
+                    orderItemsResult.add(resultItem);
+                }
+            }
+            int fullPrice = GetCheckOut(resultOrder.Id).Sum;
+            result = new FullOrderResult(
+                    resultOrder.Id,
+                    orderItemsResult,
+                    fullPrice,
+                    resultOrder.Name,
+                    resultOrder.Date,
+                    resultOrder.Title,
+                    resultOrder.Phone,
+                    resultOrder.Description,
+                    resultOrder.Address
+            );
+
+        }
+        context.Dispose();
+        return result;
     }
 
     @Override
     public FullOrderResult GetFullOrder(int id) {
-        return null;
+        FullOrderResult result = null;
+        SQLContext context = new SQLContext();
+        var resultOrder = context.GetOrderById(id);
+        var orderItemsResult = context.GetOrderItems(new GetOrdersListRequest(0,100));
+        int fullPrice = GetCheckOut(id).Sum;
+        if(resultOrder != null){
+            result = new FullOrderResult(
+                    resultOrder.Id,
+                    orderItemsResult.OrderItems,
+                    fullPrice,
+                    resultOrder.Name,
+                    resultOrder.Date,
+                    resultOrder.Title,
+                    resultOrder.Phone,
+                    resultOrder.Description,
+                    resultOrder.Address
+            );
+        }
+        context.Dispose();
+        return result;
+    }
+
+    @Override
+    public List<Booking> GetActiveBookings() {
+		SQLContext context =new SQLContext();
+		var result = context.GetActiveBookings();
+		context.Dispose();
+        return result;
     }
 
     @Override
@@ -58,7 +136,13 @@ public class BusinessData implements IBusinessData{
     }
 
     @Override
-    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) { return null; }
+    public GetBookingsListResult GetBookingsList(GetBookingsListRequest request) {
+		SQLContext context = new SQLContext();        
+        var result = context.GetBookings(request);       
+        context.Dispose();
+        request.PageCount = result.PageCount;
+        return new GetBookingsListResult(result.Bookings,request); 
+	}
 
     @Override
     public GetItemsListResult GetItemsList(GetItemsListRequest request) {
@@ -122,16 +206,15 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Order AddOrder(AddOrderRequest request) {
-    return null;}
+        return null;
+    }
 
     @Override
     public OrderItem AddOrderItem(AddOrderItemRequest request) {
         SQLContext context = new SQLContext();
         OrderItem newOrderItem = new OrderItem();
-        newOrderItem.Id = request.Id;
         newOrderItem.OrderId = request.OrderId;
         newOrderItem.ItemId=request.ItemId;
-        newOrderItem.Amount=request.Amount;
         var result = context.AddOrderItem(newOrderItem);
         context.Dispose();
         return result;
@@ -139,7 +222,16 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Booking AddBooking(AddBookingRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var newBooking = new Booking();
+        newBooking.State = BookingState.Booked;
+        newBooking.Name = request.Name;
+        newBooking.Table = request.Table;
+        newBooking.Phone = request.Phone;
+        newBooking.Description = request.Description;
+        context.AddBooking(newBooking);
+        context.Dispose();
+        return newBooking;
     }
 
     @Override
@@ -157,6 +249,13 @@ public class BusinessData implements IBusinessData{
     }
 
     @Override
+    public void DeleteBookingById(int id) {
+        SQLContext context = new SQLContext();
+        context.DeleteBookingById(id);
+        context.Dispose();
+    }
+
+    @Override
     public User SetUser(SetUserRequest request){
         SQLContext context = new SQLContext();
         var user = context.GetUserById(request.Id);
@@ -169,25 +268,86 @@ public class BusinessData implements IBusinessData{
 
     @Override
     public Order SetOrder(SetOrderRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var order = context.GetOrderById(request.Id);
+        order.State = request.State;
+        var result = context.SetOrder(order);
+        context.Dispose();
+        return result;
+    }
+    
+    @Override
+    public Item SetItem(SetItemRequest request){
+    SQLContext context = new SQLContext();
+        var item = context.GetItemById(request.Id);
+        var result = context.SetItem(item);
+        context.Dispose();
+        return result;
+    
+    
     }
 
     @Override
-    public OrderItem SetOrderItem(SetOrderItemRequest request) {
-        /*SQLContext context = new SQLContext();
-        var orderItem = context.GetOrderItemById(request.Id);
-        orderItem.Id = request.Id;
-        orderItem.OrderId = request.OrderId;
-        orderItem.ItemId=request.ItemId;
-        orderItem.Amount=request.Amount;
-        var result = context.(orderItem);
-        context.Dispose();
-        return result;*/
-        return null;
+    public List<FullOrderRequest> GetListOfDefaultOrders() {
+        List<FullOrderRequest> result = new ArrayList<>();
+        List<Integer> itemsInOrder = new ArrayList<>();
+        itemsInOrder.add(1);
+        itemsInOrder.add(10);
+        itemsInOrder.add(4);
+        itemsInOrder.add(5);
+        itemsInOrder.add(8);
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Szalámis"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(11);
+        itemsInOrder.add(12);
+        itemsInOrder.add(4);
+        itemsInOrder.add(6);
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Gombás"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(10);
+        itemsInOrder.add(9);
+        itemsInOrder.add(4);
+        itemsInOrder.add(6);
+        itemsInOrder.add(12);
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Olaszos"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(10);
+        itemsInOrder.add(4);
+        itemsInOrder.add(5);
+        itemsInOrder.add(6);
+        itemsInOrder.add(7);
+        itemsInOrder.add(8);
+        itemsInOrder.add(9);
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Extra"));
+        itemsInOrder.clear();
+        itemsInOrder.add(1);
+        itemsInOrder.add(11);
+        itemsInOrder.add(4);
+        itemsInOrder.add(7);
+        itemsInOrder.add(8);
+        itemsInOrder.add(12);
+        result.add(new FullOrderRequest(CloneList(itemsInOrder),"Vegetáriánus"));
+        //result.add(new FullOrderRequest(itemsInOrder,"","Kívánság"));
+        return result;
     }
 
     @Override
     public Booking SetBooking(SetBookingRequest request) {
-        return null;
+        SQLContext context = new SQLContext();
+        var booking = context.GetBookingById(request.Id);
+        booking.State = request.State;
+        var result = context.SetBooking(booking);
+        context.Dispose();
+        return result;
+    }
+    private <T> List<T> CloneList(List<T> list){
+        List<T> result = new ArrayList<>();
+        for (var item: list) {
+            result.add(item);
+        }
+        return result;
     }
 }

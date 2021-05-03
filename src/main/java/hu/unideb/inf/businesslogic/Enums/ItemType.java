@@ -1,6 +1,7 @@
 package hu.unideb.inf.businesslogic.Enums;
 
 public enum ItemType {
+    NotSet,
     Base,
     Topping,
     Sauce;
@@ -15,7 +16,25 @@ public enum ItemType {
             case 2:{
                 return Sauce;
             }
+            default:{
+                return NotSet;
+            }
         }
-        return null;
+    }
+    public static int toInt(ItemType val){
+        switch(val){
+            case Base:{
+                return 0;
+            }
+            case Topping:{
+                return 1;
+            }
+            case Sauce:{
+                return 2;
+            }
+            default:{
+                return -1;
+            }
+        }
     }
 }

@@ -25,19 +25,20 @@ public class Item implements IEntity<Item> {
         }
         return this;
     }
+	public int getId(){
+		return Id;
+	}
+	public String getName(){
+		return Name;
+	}
+	public int getAmount(){
+		return Amount;
+	}
+	public int getPrice(){
+		return Price;
+	}
+	public ItemType getType(){
+		return Type;
+	}
 
-    public String getName() {
-        return Name;
-    }
-
-    public int getAmount() {
-        return Amount;
-    }
-
-    public int getPrice() {
-        return Price;
-    }
-
-    
-    
 }

@@ -6,6 +6,7 @@
 package hu.unideb.inf.controller;
 
 import hu.unideb.inf.businesslogic.BusinessData;
+import hu.unideb.inf.businesslogic.Interfaces.IUserData;
 import hu.unideb.inf.businesslogic.RequestModels.AddUserRequest;
 import hu.unideb.inf.businesslogic.RequestModels.GetUsersListRequest;
 import hu.unideb.inf.businesslogic.ResultModels.GetUsersListResult;
@@ -59,7 +60,7 @@ public class DolgozoiSceneController implements Initializable {
     
       
     
-    BusinessData bsd= new BusinessData();
+   
    
     Stage stagew= new Stage();
  
@@ -93,6 +94,7 @@ public class DolgozoiSceneController implements Initializable {
     
     
     public void  refreshDolgozok(){
+         IUserData bsd= new BusinessData();
         GetUsersListResult UserList=bsd.GetUsersList(new GetUsersListRequest(0,10));
     
    ObservableList<User> olist= FXCollections.observableArrayList(UserList.Collection);
@@ -136,6 +138,7 @@ public class DolgozoiSceneController implements Initializable {
                 alert.showAndWait();
         
         }else{
+             IUserData bsd= new BusinessData();
         bsd.DeleteUserById(Table.getSelectionModel().getSelectedItem().Id);
         Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Törlés");
@@ -144,6 +147,30 @@ public class DolgozoiSceneController implements Initializable {
         refreshDolgozok();
         
         }
+    }
+    
+     @FXML
+    void handleFoglalasokListazasaPushed(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/FoglalasListazasScene.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    
+      @FXML
+    void handleRendelesekListazasaPushed(ActionEvent event) throws IOException {
+  Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/RendelesekListazasaScene.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
     }
 
     

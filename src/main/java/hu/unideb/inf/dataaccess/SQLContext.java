@@ -1,10 +1,9 @@
 package hu.unideb.inf.dataaccess;
 
+import hu.unideb.inf.businesslogic.Enums.BookingState;
+import hu.unideb.inf.businesslogic.Enums.OrderState;
 import hu.unideb.inf.businesslogic.Interfaces.IPaged;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.ItemsResult;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.OrderItemsResult;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.OrdersResult;
-import hu.unideb.inf.businesslogic.ResultModels.DaoResults.UsersResult;
+import hu.unideb.inf.businesslogic.ResultModels.DaoResults.*;
 import hu.unideb.inf.dataaccess.Entities.*;
 
 import java.sql.Connection;
@@ -12,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class SQLContext extends PersistentContextBase{
@@ -162,7 +162,7 @@ public class SQLContext extends PersistentContextBase{
             {
                 var rs = stmnt.executeQuery(query);
                 if(rs.next()) {
-                    return new Item().Map(stmnt.executeQuery(query));
+                    return new Item().Map(rs);
                 }
             }
         }
@@ -223,7 +223,37 @@ public class SQLContext extends PersistentContextBase{
         }
         return new OrdersResult(result,count);
     }
-
+	@Override
+    public BookingsResult GetBookings(IPaged request) {
+        ArrayList<Booking> result = new ArrayList<Booking>();
+        int count = 0;
+        try {
+            var stmnt = CreateStatement();
+            
+            String query = "select * from T_BOOKINGS limit "+(request.CurrentPage*request.PageSize)+", "+request.PageSize;
+            String countQuery = "select count(C_ID) as count from T_BOOKINGS";
+            if(stmnt != null){
+                
+                var rs = stmnt.executeQuery(query);
+                
+                while (rs.next()) {                                       
+                    result.add(new Booking().Map(rs));
+                }
+                
+                rs = stmnt.executeQuery(countQuery);
+                
+                if(rs.next()) {
+                    int c = rs.getInt("count");
+                    count = c / request.PageSize + c % request.PageSize > 0 ? 1 : 0;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        return new BookingsResult(result,count);
+    }
+	
     @Override
     public OrderItemsResult GetOrderItems(IPaged request) {
         ArrayList<OrderItem> result = new ArrayList<OrderItem>();
@@ -287,7 +317,7 @@ public class SQLContext extends PersistentContextBase{
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetUserById(newValues.Id);
+                result = GetUserById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -302,15 +332,12 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_BOOKING set C_NAME = '%s', C_STATE = %d, C_DATE = '%s', C_TABLE = %d where C_ID = %d",
-                    newValues.Name,
-                    newValues.State,
-                    newValues.Date,
-                    newValues.Table,
+                    "update T_BOOKINGS set C_STATE = %d, where C_ID = %d",
+                    BookingState.toInt(newValues.State),
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetBookingById(newValues.Id);
+                result = GetBookingById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -319,21 +346,23 @@ public class SQLContext extends PersistentContextBase{
         }
         return result;
     }
-
     @Override
     public Order SetOrder(Order newValues) {
         Order result = null;
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_ORDER set C_NAME = '%s', C_STATE = %d, C_DATE = '%s' where C_ID = %d",
+                    "update T_ORDERS set C_NAME = '%s', C_STATE = %d, C_TITLE = '%s',C_DESCRIPTION  = '%s', C_PHONE = '%s', C_ADDRESS = '%s' where C_ID = %d",
                     newValues.Name,
-                    newValues.State,
-                    newValues.Date,
+                    OrderState.toInt(newValues.State),
+                    newValues.Title,
+                    newValues.Description,
+                    newValues.Phone,
+                    newValues.Address,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetOrderById(newValues.Id);
+                result = GetOrderById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -356,7 +385,7 @@ public class SQLContext extends PersistentContextBase{
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
-                return GetItemById(newValues.Id);
+                result = GetItemById(newValues.Id);
             }
         }
         catch(Exception e){
@@ -372,17 +401,18 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_DATE, C_TABLE) VALUES ('%s',%d,'%s',%d);",
+                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_TABLE, C_PHONE, C_DESCRIPTION) VALUES ('%s',%d,%d,'%s','%s');",
                     newBooking.Name,
-                    newBooking.State,
-                    newBooking.Date,
-                    newBooking.Table);
+                    BookingState.toInt(newBooking.State),
+                    newBooking.Table,
+                    newBooking.Phone,
+                    newBooking.Description);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetBookingById(rs.getInt("C_ID"));
+                    result = GetBookingById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){
@@ -393,21 +423,25 @@ public class SQLContext extends PersistentContextBase{
     }
 
     @Override
-    public Order AddOrder(Order newBooking) {
+    public Order AddOrder(Order newOrder) {
         Order result = null;
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERS (C_NAME, C_DATE, C_STATE) VALUES ('%s',%d,%d);",
-                    newBooking.Name,
-                    newBooking.Date,
-                    newBooking.State);
+                    "INSERT INTO T_ORDERS (C_NAME, C_STATE, C_TITLE, C_DESCRIPTION, C_PHONE, C_ADDRESS) VALUES ('%s',%d,'%s', '%s', '%s', '%s');",
+                    newOrder.Name,
+                    OrderState.toInt(newOrder.State),
+                    newOrder.Title,
+                    newOrder.Description,
+                    newOrder.Phone,
+                    newOrder.Address);
+            
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetOrderById(rs.getInt("C_ID"));
+                    result = GetOrderById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){
@@ -423,16 +457,15 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERITEMS (C_ORDERID, C_ITEMID, C_AMOUNT) VALUES (%d,%d,%d);",
+                    "INSERT INTO T_ORDERITEMS (C_ORDERID, C_ITEMID) VALUES (%d,%d);",
                     newOrderItem.OrderId,
-                    newOrderItem.ItemId,
-                    newOrderItem.Amount);
+                    newOrderItem.ItemId);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetOrderItemById(rs.getInt("C_ID"));
+                    result = GetOrderItemById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){
@@ -457,7 +490,7 @@ public class SQLContext extends PersistentContextBase{
                 stmnt.executeUpdate(query);
                 var rs = stmnt.executeQuery(newItemQuery);
                 if(rs.next())
-                    return GetUserById(rs.getInt("C_ID"));
+                    result = GetUserById(rs.getInt("C_ID"));
             }
         }
         catch(Exception e){
@@ -521,6 +554,25 @@ public class SQLContext extends PersistentContextBase{
         catch(Exception e){
             System.out.println(e.toString());
         }
+    }
+
+    @Override
+    public List<Booking> GetActiveBookings() {
+        List<Booking> result = new ArrayList<>();
+        try {
+            var stmnt = CreateStatement();
+            String query = "select * from T_BOOKINGS where C_STATE=2;";
+            if(stmnt != null){
+                var rs = stmnt.executeQuery(query);
+                while (rs.next()) {
+                    result.add(new Booking().Map(rs));
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        return result;
     }
 
 

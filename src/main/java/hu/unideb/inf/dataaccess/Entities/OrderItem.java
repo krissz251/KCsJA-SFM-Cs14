@@ -9,7 +9,6 @@ public class OrderItem implements IEntity<OrderItem> {
     public int Id;
     public int OrderId;
     public int ItemId;
-    public int Amount;
     @Override
     public OrderItem Map(ResultSet rs) {
         try {
@@ -21,5 +20,13 @@ public class OrderItem implements IEntity<OrderItem> {
         }
         return this;
     }
-
+	public int getId(){
+		return Id;
+	}
+	public int getOrderId(){
+		return OrderId;
+	}
+	public int getItemId(){
+		return ItemId;
+	}
 }

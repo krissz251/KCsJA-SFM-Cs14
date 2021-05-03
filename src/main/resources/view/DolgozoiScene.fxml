@@ -26,7 +26,7 @@
           <TableColumn fx:id="Jelszo" prefWidth="314.4000244140625" text="Jelszó" />
         </columns>
       </TableView>
-      <Button layoutX="60.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleFeltetekListazasaPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Tovább a feltétek listázására" textFill="WHITE">
+      <Button layoutX="60.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleFeltetekListazasaPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Feltétek listázása" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
@@ -42,6 +42,16 @@
          </font>
       </Button>
       <Button layoutX="514.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleDolgozoTorlesePushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Felhasználó törlése" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+       <Button layoutX="233.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleFoglalasokListazasaPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Foglalások listázása" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="428.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleRendelesekListazasaPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Rendelések listázása" textFill="WHITE">
          <font>
             <Font name="Lucida Handwriting Italic" size="14.0" />
          </font>
