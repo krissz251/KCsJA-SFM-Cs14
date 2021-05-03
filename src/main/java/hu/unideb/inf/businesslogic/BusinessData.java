@@ -280,6 +280,7 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
     public Item SetItem(SetItemRequest request){
     SQLContext context = new SQLContext();
         var item = context.GetItemById(request.Id);
+        item.Amount+=request.Amount;
         var result = context.SetItem(item);
         context.Dispose();
         return result;

@@ -79,7 +79,7 @@ public class FeltetekListazasaSceneController implements Initializable {
     public void refreshFeltetek(){
     IOrderData bsd= new BusinessData();
     
-    GetItemsListResult ItemList=bsd.GetItemsList(new GetItemsListRequest(0,11));
+    GetItemsListResult ItemList=bsd.GetItemsList(new GetItemsListRequest(0,12));
     
    ObservableList<Item> olist= FXCollections.observableArrayList(ItemList.Collection);
     
@@ -148,8 +148,7 @@ dialog.setResultConverter(dialogButton -> {
 
 Optional<Integer> result = dialog.showAndWait();
 
-result.ifPresent(Mennyiseg -> {
-    //System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());    
+result.ifPresent(Mennyiseg -> {    
     if(Mennyiseg<1){
               Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Feltöltési hiba");
@@ -160,8 +159,8 @@ result.ifPresent(Mennyiseg -> {
     } else{
     
         IOrderData bsd = new BusinessData();
-        bsd.SetItem(new SetItemRequest(Table.getSelectionModel().getSelectedItem().Id, Table.getSelectionModel().getSelectedItem().Amount+Mennyiseg));
-        System.out.println(Table.getSelectionModel().getSelectedItem().Id +" "+ Table.getSelectionModel().getSelectedItem().Name +" "+ (Table.getSelectionModel().getSelectedItem().Amount+Mennyiseg) +" "+ Table.getSelectionModel().getSelectedItem().Price +" "+ Table.getSelectionModel().getSelectedItem().Type);
+        bsd.SetItem(new SetItemRequest(Table.getSelectionModel().getSelectedItem().Id, Mennyiseg));
+        //System.out.println(Table.getSelectionModel().getSelectedItem().Id +" "+ Table.getSelectionModel().getSelectedItem().Name +" "+ (Table.getSelectionModel().getSelectedItem().Amount+Mennyiseg) +" "+ Table.getSelectionModel().getSelectedItem().Price +" "+ Table.getSelectionModel().getSelectedItem().Type);
     }       
 });
             refreshFeltetek();
