@@ -75,7 +75,7 @@ public class AsztalVeglegesController implements Initializable {
         
         }else{
             IBookingData bsd= new BusinessData();
-          AddBookingRequest booking= new AddBookingRequest(this.tableid,nevTextField.getText());
+          AddBookingRequest booking= new AddBookingRequest(this.tableid,nevTextField.getText(),telefonTextField.getText(),megjegyzesTextArea.getText());
           Booking newbooking=bsd.AddBooking(booking);
           
           Stage window=(Stage) ((Node) event.getSource()).getScene().getWindow();

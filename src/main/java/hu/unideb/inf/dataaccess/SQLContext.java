@@ -332,11 +332,8 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_BOOKINGS set C_NAME = '%s', C_STATE = %d, C_TABLE = %d, C_PHONE = '%s' where C_ID = %d",
-                    newValues.Name,
+                    "update T_BOOKINGS set C_STATE = %d, where C_ID = %d",
                     BookingState.toInt(newValues.State),
-                    newValues.Table,
-                    newValues.Phone,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
@@ -355,10 +352,13 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_ORDERS set C_NAME = '%s', C_STATE = %d, C_TITLE = '%s' where C_ID = %d",
+                    "update T_ORDERS set C_NAME = '%s', C_STATE = %d, C_TITLE = '%s',C_DESCRIPTION  = '%s', C_PHONE = '%s', C_ADDRESS = '%s' where C_ID = %d",
                     newValues.Name,
                     OrderState.toInt(newValues.State),
                     newValues.Title,
+                    newValues.Description,
+                    newValues.Phone,
+                    newValues.Address,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
@@ -401,11 +401,12 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_TABLE, C_PHONE) VALUES ('%s',%d,%d,'%s');",
+                    "INSERT INTO T_BOOKINGS (C_NAME, C_STATE, C_TABLE, C_PHONE, C_DESCRIPTION) VALUES ('%s',%d,%d,'%s','%s');",
                     newBooking.Name,
                     BookingState.toInt(newBooking.State),
                     newBooking.Table,
-                    newBooking.Phone);
+                    newBooking.Phone,
+                    newBooking.Description);
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
                 stmnt.executeUpdate(query);
@@ -427,11 +428,13 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "INSERT INTO T_ORDERS (C_NAME, C_STATE, C_TITLE, C_DESCRIPTION) VALUES ('%s',%d,'%s', '%s');",
+                    "INSERT INTO T_ORDERS (C_NAME, C_STATE, C_TITLE, C_DESCRIPTION, C_PHONE, C_ADDRESS) VALUES ('%s',%d,'%s', '%s', '%s', '%s');",
                     newOrder.Name,
                     OrderState.toInt(newOrder.State),
                     newOrder.Title,
-                    newOrder.Description);
+                    newOrder.Description,
+                    newOrder.Phone,
+                    newOrder.Address);
             
             String newItemQuery = "SELECT LAST_INSERT_ID() as C_ID;";
             if(stmnt != null){
