@@ -37,7 +37,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Jelenszky Ádám
+ * @author Jelenszky Ádám & Muszta Attila
  */
 public class RendelesekListazasaSceneController implements Initializable {
 
@@ -79,12 +79,12 @@ public class RendelesekListazasaSceneController implements Initializable {
         GetOrdersListResult OrderList=bsd.GetOrdersList(new GetOrdersListRequest(0,100));  
         ObservableList<Order> olist= FXCollections.observableArrayList(OrderList.Collection);      
         Nev.setCellValueFactory(new PropertyValueFactory<Order,String>("Name"));
-        Pizza.setCellValueFactory(new PropertyValueFactory<Order,String>("Title"));
+        //Pizza.setCellValueFactory(new PropertyValueFactory<Order,String>("Title"));
         Statusz.setCellValueFactory(new PropertyValueFactory<Order,OrderState>("State"));
        Datum.setCellValueFactory(new PropertyValueFactory<Order,Date>("Date"));
-       Megjegyzes.setCellValueFactory(new PropertyValueFactory<Order,String>("Description"));
+      // Megjegyzes.setCellValueFactory(new PropertyValueFactory<Order,String>("Description"));
        Phone.setCellValueFactory(new PropertyValueFactory<Order,String>("Phone"));
-       Cim.setCellValueFactory(new PropertyValueFactory<Order,String>("Address"));
+       //Cim.setCellValueFactory(new PropertyValueFactory<Order,String>("Address"));
         
         
         Table.setItems(olist);
@@ -147,6 +147,19 @@ public class RendelesekListazasaSceneController implements Initializable {
     }
     
      @FXML
+    void handleReszletekListazasaPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/RendelesReszletekListazasScene.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+        
+    }
+    
+     @FXML
     void handleRendelesKeszButtonPushed(ActionEvent event) {
  if(Table.getSelectionModel().isEmpty()){
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -171,7 +184,10 @@ public class RendelesekListazasaSceneController implements Initializable {
         // TODO
     }    
 
+    
+   
 }
+
 
     
     
