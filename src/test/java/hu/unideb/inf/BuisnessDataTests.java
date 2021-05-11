@@ -15,8 +15,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,32 +26,41 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 class BuisnessDataTests {
-    BusinessData bd = null;
-    //GetCheckoutResult rcr = Mockito.mock(GetCheckoutResult.class);
-    //@Mock
 
+
+    BusinessData bd = new BusinessData();
+    SQLContext context  = Mockito.mock(SQLContext.class);
+    //GetCheckoutResult rcr = Mockito.mock(GetCheckoutResult.class);
+    /*@Mock
+    //User userMock;
+    BusinessData businessDataMock;
     @Before
     public void setUp(){
-
-        bd = new BusinessData();
-    }
+    }*/
     @Test
     void LoginTest() {
+        when(context.LoginUser("admin","a")).thenReturn(true);
+        when(context.LoginUser("admin","b")).thenReturn(false);
         String username="admin", password1="a",password2="b";
         boolean result1=bd.Login(username,password1);
         boolean result2=bd.Login(username,password2);
-        assertTrue(result1);
-        assertFalse(result2);
+        boolean expected1= context.LoginUser("admin","a");
+        boolean expected2= context.LoginUser("admin","b");
+        assertEquals(expected1,result1);
+        assertEquals(expected2,result2);
+        verify(context).LoginUser("admin","a");
     }
-    /*@Test
+    @Test
     void GetOrderItemByIdTest() {
         int orderItemId=1,expectedOrederId=1,expectedItemId=1;
         var result= bd.GetOrderItemById(1);
         assertEquals(result.OrderId,expectedOrederId);
         assertEquals(result.ItemId,expectedItemId);
-    }*/
+    }
     @Test
     void GetUserByIdTest() {
         int userId= 1;
@@ -60,21 +71,23 @@ class BuisnessDataTests {
         assertEquals(result.Password,expectedPw);
     }
 
-    /*@Test
+    @Test
     void GetOrderById(){
-        int ItemId=1;
-        String expected="06301115021";
-        var result=bd.GetOrderById(ItemId);
-        assertEquals(result.Phone,expected);
-    }*/
+        int orderID=1;
 
-    /*@Test
+        String expected="Kiss Ernő";
+        var result=bd.GetOrderById(orderID);
+        assertEquals(result.Name,expected);
+    }
+
+    @Test
     void GetBookingByIdTest(){
         int bookingId=1;
         var result= bd.GetBookingById(bookingId);
+        String expectedPhone="06301115021";
         String expectedName=null;
-        assertEquals(result.getName(),expectedName);
-    }*/
+        assertEquals(result.Phone,expectedPhone);
+    }
     @Test
     void GetItemByIdTest(){
         int itemId1=1, itemId2=6;
@@ -84,19 +97,22 @@ class BuisnessDataTests {
         assertEquals(result1.Name,expectedName1);
         assertEquals(result2.Name,expectedName2);
     }
-    //Az Id folyamatos változása miatt nem müködikminden futtatáskor a test
-    //a metódusok mükednek!
-    /*@Test
+
+    @Test
     void UserTests(){
         AddUserRequest aur=new AddUserRequest("TestUn","TestPw");
-
-        bd.AddUser(aur);
-        var expected=bd.GetUserById(9);
-
+        var user=bd.AddUser(aur);
+        int userId=user.Id;
+        var expected=bd.GetUserById(userId);
         assertEquals(aur.UserName,expected.Name);
-        bd.DeleteUserById(9);
-        var result=bd.GetUserById(9);
+        assertEquals(user.Name,expected.Name);
+        bd.DeleteUserById(userId);
+        var result=bd.GetUserById(userId);
         User expectedUser=null;
-        assertEquals(expected,expectedUser);
+        assertEquals(expectedUser,result);
+    }
+    /*@Test
+    void BookingTests(){
+
     }*/
 }
