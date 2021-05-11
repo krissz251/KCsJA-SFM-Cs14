@@ -132,6 +132,26 @@ public class SQLContext extends PersistentContextBase{
         }
         return null;
     }
+    
+    @Override
+    public List<OrderItem> GetOrderItemsByOrderId(int orderId) {
+        ArrayList<OrderItem> result = new ArrayList<OrderItem>();
+        try {
+            var stmnt = CreateStatement();
+            String query = "select * from T_ORDERITEMS where C_ORDERID = "+orderId;
+            if(stmnt != null){
+                var rs = stmnt.executeQuery(query);
+                while (rs.next()) {
+                    result.add(new OrderItem().Map(rs));
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            return null;
+        }
+        return result;
+    }
 
     @Override
     public Booking GetBookingById(int id) {

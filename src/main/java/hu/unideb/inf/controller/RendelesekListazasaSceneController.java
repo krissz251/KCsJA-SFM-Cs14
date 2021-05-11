@@ -29,9 +29,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -71,20 +73,18 @@ public class RendelesekListazasaSceneController implements Initializable {
     
        @FXML
     private TableColumn<?, ?> Ar;
-
-    
+       
+    @FXML
+    private ListView reszletekListView;
     
     public void refreshRendelesek(){
      IOrderData bsd= new BusinessData();
         GetOrdersListResult OrderList=bsd.GetOrdersList(new GetOrdersListRequest(0,100));  
         ObservableList<Order> olist= FXCollections.observableArrayList(OrderList.Collection);      
         Nev.setCellValueFactory(new PropertyValueFactory<Order,String>("Name"));
-        //Pizza.setCellValueFactory(new PropertyValueFactory<Order,String>("Title"));
         Statusz.setCellValueFactory(new PropertyValueFactory<Order,OrderState>("State"));
        Datum.setCellValueFactory(new PropertyValueFactory<Order,Date>("Date"));
-      // Megjegyzes.setCellValueFactory(new PropertyValueFactory<Order,String>("Description"));
        Phone.setCellValueFactory(new PropertyValueFactory<Order,String>("Phone"));
-       //Cim.setCellValueFactory(new PropertyValueFactory<Order,String>("Address"));
         
         
         Table.setItems(olist);
@@ -118,7 +118,7 @@ public class RendelesekListazasaSceneController implements Initializable {
 
     @FXML
     void handleTovabbaFeltetekButtonPushed(ActionEvent event) throws IOException {
-             Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/FeltetekListazasaScene.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/FeltetekListazasaScene.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -148,33 +148,48 @@ public class RendelesekListazasaSceneController implements Initializable {
     
      @FXML
     void handleReszletekListazasaPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/RendelesReszletekListazasScene.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        IOrderData bsd= new BusinessData();
         
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Order order = Table.getSelectionModel().getSelectedItem();
         
-        window.setScene(tableViewScene);
+        int price = bsd.GetCheckOut(order.getId()).Sum;
+        
+        reszletekListView = new ListView();
+        reszletekListView.setPrefWidth(500);
+        reszletekListView.getItems().clear();
+        reszletekListView.getItems().add("Név: " + order.getName());
+        reszletekListView.getItems().add("Cím: " + order.getAddress());
+        reszletekListView.getItems().add("Dátum: " + order.getDate());
+        reszletekListView.getItems().add("Telefonszám: " + order.getPhone());
+        reszletekListView.getItems().add("Pizza: " + order.getTitle());
+        reszletekListView.getItems().add("Ár: " + price);
+        reszletekListView.getItems().add("Megjegyzés: " + order.getDescription());
+        
+        HBox hbox = new HBox(reszletekListView);
+        
+        Scene scene = new Scene(hbox, 500, 300);
+        Stage window = new Stage();
+        
+        window.setScene(scene);
         window.show();
-        
     }
     
      @FXML
     void handleRendelesKeszButtonPushed(ActionEvent event) {
- if(Table.getSelectionModel().isEmpty()){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        if(Table.getSelectionModel().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Hiba");
                 alert.setHeaderText("Válaszd ki a módosítandó rendelést a listából!");
                 alert.showAndWait();
         
         }else{
             IOrderData bsd= new BusinessData();
-        bsd.SetOrder(new SetOrderRequest(Table.getSelectionModel().getSelectedItem().Id,Table.getSelectionModel().getSelectedItem().Name,OrderState.Done,Table.getSelectionModel().getSelectedItem().Title));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Státusz módosítva");
-                alert.setHeaderText("A rendelés feldolgozásra került.");
-                alert.showAndWait();
-        refreshRendelesek();
+            bsd.SetOrder(new SetOrderRequest(Table.getSelectionModel().getSelectedItem().Id,Table.getSelectionModel().getSelectedItem().Name,OrderState.Done,Table.getSelectionModel().getSelectedItem().Title));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Státusz módosítva");
+            alert.setHeaderText("A rendelés feldolgozásra került.");
+            alert.showAndWait();
+            refreshRendelesek();
         
         }
     }

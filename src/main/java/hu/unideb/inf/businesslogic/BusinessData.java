@@ -25,9 +25,9 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
     @Override
     public GetCheckoutResult GetCheckOut(int orderId) {
         SQLContext context = new SQLContext();
-        var orderItemsResult = context.GetOrderItems(new GetOrdersListRequest(0,100));
+        var orderItems = context.GetOrderItemsByOrderId(orderId);
         int sum = 0;
-        for (var orderItem: orderItemsResult.OrderItems) {
+        for (var orderItem: orderItems) {
             var item = context.GetItemById(orderItem.ItemId);
             if(item != null){
                 sum += item.Price;
