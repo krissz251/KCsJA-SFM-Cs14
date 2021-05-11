@@ -3,6 +3,7 @@ package hu.unideb.inf;
 import hu.unideb.inf.businesslogic.BusinessData;
 import hu.unideb.inf.businesslogic.RequestModels.*;
 import hu.unideb.inf.businesslogic.ResultModels.*;
+import hu.unideb.inf.dataaccess.Entities.Booking;
 import hu.unideb.inf.dataaccess.Entities.OrderItem;
 import hu.unideb.inf.dataaccess.Entities.User;
 import hu.unideb.inf.dataaccess.SQLContext;
@@ -31,7 +32,6 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 class BuisnessDataTests {
 
-
     BusinessData bd = new BusinessData();
     SQLContext context  = Mockito.mock(SQLContext.class);
     //GetCheckoutResult rcr = Mockito.mock(GetCheckoutResult.class);
@@ -40,6 +40,8 @@ class BuisnessDataTests {
     BusinessData businessDataMock;
     @Before
     public void setUp(){
+
+
     }*/
     @Test
     void LoginTest() {
@@ -98,7 +100,7 @@ class BuisnessDataTests {
         assertEquals(result2.Name,expectedName2);
     }
 
-    @Test
+    @Test // Tartalmazza a AddUser GetUserById SetUser DeleteUserById
     void UserTests(){
         AddUserRequest aur=new AddUserRequest("TestUn","TestPw");
         var user=bd.AddUser(aur);
@@ -106,13 +108,51 @@ class BuisnessDataTests {
         var expected=bd.GetUserById(userId);
         assertEquals(aur.UserName,expected.Name);
         assertEquals(user.Name,expected.Name);
+        SetUserRequest sur= new SetUserRequest(userId,"UserSet","PwSET");
+        var setUser=bd.SetUser(sur);
+        var expectedSet=bd.GetUserById(userId);
+        assertEquals(sur.UserName,expectedSet.Name);
+        assertEquals(setUser.Name,expectedSet.Name);
         bd.DeleteUserById(userId);
         var result=bd.GetUserById(userId);
-        User expectedUser=null;
-        assertEquals(expectedUser,result);
+        User expDeletedUser=null;
+        assertEquals(expDeletedUser,result);
     }
-    /*@Test
+    /*@Test //Tartalmazza a AddBooking GetBookingById GetActiveBookings DeleteBookingById
     void BookingTests(){
-
+        AddBookingRequest abr= new AddBookingRequest(7, "Terp Eszeter", "06305615021", "telefonon pls!");
+        var booking= bd.AddBooking(abr);
+        //System.out.println(booking.Id);
+        var result= bd.GetBookingById(booking.Id);
+        assertEquals(abr.Name,result.Name);
+        assertEquals(booking.Name,result.Name);
+        var resultListBooking = bd.GetActiveBookings();
+        int bookingId=-1;
+        for (int i = 0; i < resultListBooking.size(); i++) {
+            if(resultListBooking.get(i).Id==booking.Id){
+                bookingId=i;
+                break;
+            }
+        }
+        if(bookingId>=0)
+            assertEquals((resultListBooking.get(bookingId).Phone,booking.Phone);
+        bd.DeleteBookingById(booking.Id);
+        Booking expectedBooking= null;
+        assertEquals(result.Phone,expectedBooking);
     }*/
+    /* @Test
+    void OrderItemsTests() {
+
+        AddOrderItemRequest aoir=new AddOrderItemRequest(2,10);
+        var orderItem= bd.AddOrderItem(aoir);
+        var result=bd.GetOrderItemById(orderItem.Id);
+        assertEquals(aoir.OrderId,result.OrderId);
+        assertEquals(orderItem.ItemId,result.ItemId);
+        //SetOrderItemRequest sor=new SetOrderItemRequest(order.Id,3,5,20);
+        bd.DeleteUserById(orderItem.Id);
+        OrderItem expDeletedOrderItems= null;
+        result=bd.GetOrderItemById(orderItem.Id);
+        assertEquals(expDeletedOrderItems,result);
+    }*/
+
 }
