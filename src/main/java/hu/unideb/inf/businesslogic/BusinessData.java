@@ -25,9 +25,9 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
     @Override
     public GetCheckoutResult GetCheckOut(int orderId) {
         SQLContext context = new SQLContext();
-        var orderItemsResult = context.GetOrderItems(new GetOrdersListRequest(0,100));
+        var orderItems = context.GetOrderItemsByOrderId(orderId);
         int sum = 0;
-        for (var orderItem: orderItemsResult.OrderItems) {
+        for (var orderItem: orderItems) {
             var item = context.GetItemById(orderItem.ItemId);
             if(item != null){
                 sum += item.Price;
@@ -50,12 +50,15 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         Order resultOrder = context.AddOrder(order);
         List<OrderItem> orderItemsResult = new ArrayList<>();
         if(resultOrder != null){
-            for (var item:request.OrderItems) {
+            for (var oitem:request.OrderItems) {
                 OrderItem orderItem = new OrderItem();
                 orderItem.OrderId = resultOrder.Id;
-                orderItem.ItemId = item;
+                orderItem.ItemId = oitem;
                 var resultItem = context.AddOrderItem(orderItem);
                 if(resultItem != null){
+                    var item = context.GetItemById(oitem);
+                    item.Amount--;
+                    context.SetItem(item);
                     orderItemsResult.add(resultItem);
                 }
             }
@@ -274,6 +277,18 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         var result = context.SetOrder(order);
         context.Dispose();
         return result;
+    }
+    
+    @Override
+    public Item SetItem(SetItemRequest request){
+    SQLContext context = new SQLContext();
+        var item = context.GetItemById(request.Id);
+        item.Amount+=request.Amount;
+        var result = context.SetItem(item);
+        context.Dispose();
+        return result;
+    
+    
     }
 
     @Override
