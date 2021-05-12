@@ -118,7 +118,7 @@ class BuisnessDataTests {
         User expDeletedUser=null;
         assertEquals(expDeletedUser,result);
     }
-    /*@Test //Tartalmazza a AddBooking GetBookingById GetActiveBookings DeleteBookingById
+    @Test //Tartalmazza a AddBooking GetBookingById GetActiveBookings DeleteBookingById
     void BookingTests(){
         AddBookingRequest abr= new AddBookingRequest(7, "Terp Eszeter", "06305615021", "telefonon pls!");
         var booking= bd.AddBooking(abr);
@@ -135,11 +135,11 @@ class BuisnessDataTests {
             }
         }
         if(bookingId>=0)
-            assertEquals((resultListBooking.get(bookingId).Phone,booking.Phone);
+            assertEquals(resultListBooking.get(bookingId).Phone, booking.Phone);
         bd.DeleteBookingById(booking.Id);
         Booking expectedBooking= null;
         assertEquals(result.Phone,expectedBooking);
-    }*/
+    }
     /* @Test
     void OrderItemsTests() {
 
