@@ -50,15 +50,12 @@ public class BusinessData implements IBookingData, IOrderData, IUserData{
         Order resultOrder = context.AddOrder(order);
         List<OrderItem> orderItemsResult = new ArrayList<>();
         if(resultOrder != null){
-            for (var oitem:request.OrderItems) {
+            for (var item:request.OrderItems) {
                 OrderItem orderItem = new OrderItem();
                 orderItem.OrderId = resultOrder.Id;
-                orderItem.ItemId = oitem;
+                orderItem.ItemId = item;
                 var resultItem = context.AddOrderItem(orderItem);
                 if(resultItem != null){
-                    var item = context.GetItemById(oitem);
-                    item.Amount--;
-                    context.SetItem(item);
                     orderItemsResult.add(resultItem);
                 }
             }

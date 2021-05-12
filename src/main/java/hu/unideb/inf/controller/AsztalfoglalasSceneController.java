@@ -130,7 +130,7 @@ public class AsztalfoglalasSceneController implements Initializable {
                 alert.setHeaderText("A foglaláshoz válassz ki egy asztalt!");
                 alert.showAndWait();
         } else{
-        AsztalVeglegesController asztalVeglegesController = loader.getController();
+        AsztalFoglalasVeglegesiteseController asztalVeglegesController = loader.getController();
         asztalVeglegesController.setTableId(tableid);
         Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

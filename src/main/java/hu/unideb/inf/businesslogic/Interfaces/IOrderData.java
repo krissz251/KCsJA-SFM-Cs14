@@ -23,5 +23,6 @@ public interface IOrderData {
     OrderItem AddOrderItem(AddOrderItemRequest request);
     void DeleteOrderItemById(int id);
     Order SetOrder(SetOrderRequest request);
+    Item SetItem(SetItemRequest request);
     List<FullOrderRequest> GetListOfDefaultOrders();
 }
