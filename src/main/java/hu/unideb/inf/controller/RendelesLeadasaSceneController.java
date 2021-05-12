@@ -69,7 +69,7 @@ public class RendelesLeadasaSceneController implements Initializable {
     
     @FXML
     void handleRendelesLeadasa(ActionEvent event) throws IOException {
-        if(nevTextField.getText().isEmpty() || phoneTextField.getText().isEmpty()){
+        if(nevTextField.getText().isEmpty() || cimTextField.getText().isEmpty()){
              Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Hiba a rendelés leadásánál!");
                 alert.setHeaderText("A név és cím mező kitöltése kötelező!");
