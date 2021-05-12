@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="794.0" style="-fx-background-color: #a10000; -fx-border-color: #DAA520; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.AsztalfoglalasSceneController">
+   <children>
+      <Text fill="WHITE" layoutX="274.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet" textAlignment="CENTER">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="34.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="33.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet ©" />
+      <Text fill="WHITE" layoutX="274.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válasszon asztalt!">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="548.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleVeglegesitesPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Tovább a véglegesítéshez" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="32.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+      <GridPane layoutX="213.0" layoutY="180.0" prefHeight="262.0" prefWidth="374.0" style="-fx-border-color: #DAA520; -fx-border-width: 5;">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.59998779296876" minWidth="10.0" prefWidth="128.20001220703125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.39996337890625" minWidth="10.0" prefWidth="132.79998779296875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.99997558593753" minWidth="10.0" prefWidth="113.60001220703128" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="92.60001220703126" minHeight="10.0" prefHeight="87.00000610351563" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="93.59998168945313" minHeight="10.0" prefHeight="92.79999389648438" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="81.4" minHeight="10.0" prefHeight="80.59998168945313" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ImageView>
+            <RadioButton fx:id="rb11" mnemonicParsing="false">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="tgAsztal" />
+               </toggleGroup></RadioButton>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="82.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/asztal.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </ImageView>
+            <RadioButton fx:id="rb21" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></RadioButton>
+            <RadioButton fx:id="rb31" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></RadioButton>
+            <RadioButton fx:id="rb12" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.columnIndex="1" />
+            <RadioButton fx:id="rb22" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <RadioButton fx:id="rb32" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <RadioButton fx:id="rb13" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="rb23" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <RadioButton fx:id="rb33" mnemonicParsing="false" toggleGroup="$tgAsztal" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

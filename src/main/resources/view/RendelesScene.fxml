@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="794.0" style="-fx-background-color: #a10000; -fx-border-color: #DAA520; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.RendelesSceneController">
+   <children>
+      <Text fill="WHITE" layoutX="274.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet" textAlignment="CENTER">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="34.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="33.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Planet ©" />
+      <Button layoutX="273.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleEgyeniButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Kívánság pizza összeállítása" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="571.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleTovabbALeadashoz" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Tovább a leadáshoz" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+      <HBox layoutX="43.0" layoutY="334.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="1.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/extraextra.jpg" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="extraLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="extraFeltet" prefHeight="22.0" prefWidth="510.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbExtra" mnemonicParsing="false">
+               <HBox.margin>
+                  <Insets right="20.0" top="15.0" />
+               </HBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="tgPizzak" />
+               </toggleGroup>
+            </RadioButton>
+         </children>
+      </HBox>
+      <HBox layoutX="44.0" layoutY="179.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="1.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/gombas.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="gombasLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="gombasFeltet" prefHeight="22.0" prefWidth="512.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbGombas" mnemonicParsing="false" toggleGroup="$tgPizzak">
+               <HBox.margin>
+                  <Insets right="20.0" top="15.0" />
+               </HBox.margin>
+            </RadioButton>
+         </children>
+      </HBox>
+      <HBox layoutX="44.0" layoutY="257.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="1.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/extra.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="olaszosLabel" prefHeight="22.0" prefWidth="86.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="olaszosFeltet" prefHeight="22.0" prefWidth="510.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbOlaszos" mnemonicParsing="false" toggleGroup="$tgPizzak">
+               <HBox.margin>
+                  <Insets right="20.0" top="15.0" />
+               </HBox.margin>
+            </RadioButton>
+         </children>
+      </HBox>
+      <HBox layoutX="44.0" layoutY="102.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="1.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/szalami.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="szalamisLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="86.0" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="szalamisFeltet" contentDisplay="CENTER" prefHeight="22.0" prefWidth="514.0" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbSzalamis" mnemonicParsing="false" toggleGroup="$tgPizzak">
+               <HBox.margin>
+                  <Insets right="20.0" top="15.0" />
+               </HBox.margin>
+            </RadioButton>
+         </children>
+      </HBox>
+      <HBox layoutX="44.0" layoutY="412.0" prefHeight="70.0" prefWidth="706.0" style="-fx-border-width: 10; -fx-border-color: #DAA520;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="1.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/vegetarianusjpg.jpg" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="50.0" prefWidth="622.0">
+               <children>
+                  <Label fx:id="vegaLabel" prefHeight="23.0" prefWidth="117.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="vegaFeltet" prefHeight="22.0" prefWidth="507.0" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <RadioButton fx:id="rbVega" mnemonicParsing="false" toggleGroup="$tgPizzak">
+               <HBox.margin>
+                  <Insets right="20.0" top="15.0" />
+               </HBox.margin>
+            </RadioButton>
+         </children>
+      </HBox>
+      <Button layoutX="33.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleVisszaButtonPushed" style="-fx-background-color: #DAA520; -fx-cursor: hand;" text="Vissza" textFill="WHITE">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

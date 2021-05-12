@@ -60,7 +60,8 @@ public class SQLContext extends PersistentContextBase{
             {
                 var rs = stmnt.executeQuery(query);
                 if(rs.next()){
-                    return new User().Map(rs).Id != 0;
+                    var user = new User().Map(rs);
+                    return user.Name.equals(username) && user.Password.equals(password);
                 }
                 else return false;
             }
@@ -131,26 +132,6 @@ public class SQLContext extends PersistentContextBase{
             return null;
         }
         return null;
-    }
-    
-    @Override
-    public List<OrderItem> GetOrderItemsByOrderId(int orderId) {
-        ArrayList<OrderItem> result = new ArrayList<OrderItem>();
-        try {
-            var stmnt = CreateStatement();
-            String query = "select * from T_ORDERITEMS where C_ORDERID = "+orderId;
-            if(stmnt != null){
-                var rs = stmnt.executeQuery(query);
-                while (rs.next()) {
-                    result.add(new OrderItem().Map(rs));
-                }
-            }
-        }
-        catch(Exception e){
-            System.out.println(e.toString());
-            return null;
-        }
-        return result;
     }
 
     @Override
@@ -352,10 +333,8 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_BOOKINGS set C_NAME = '%s', C_STATE = %d, C_TABLE = %d where C_ID = %d",
-                    newValues.Name,
+                    "update T_BOOKINGS set C_STATE = %d where C_ID = %d",
                     BookingState.toInt(newValues.State),
-                    newValues.Table,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
@@ -596,7 +575,25 @@ public class SQLContext extends PersistentContextBase{
         }
         return result;
     }
-
+    @Override
+    public List<OrderItem> GetOrderItemsByOrderId(int orderId) {
+        ArrayList<OrderItem> result = new ArrayList<OrderItem>();
+        try {
+            var stmnt = CreateStatement();
+            String query = "select * from T_ORDERITEMS where C_ORDERID = "+orderId;
+            if(stmnt != null){
+                var rs = stmnt.executeQuery(query);
+                while (rs.next()) {
+                    result.add(new OrderItem().Map(rs));
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            return null;
+        }
+        return result;
+    }
 
     @Override
     public void Dispose(){

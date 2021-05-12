@@ -23,7 +23,7 @@ public class Booking implements IEntity<Booking> {
             Name = rs.getString("C_NAME");
             State = BookingState.fromInt(rs.getInt("C_STATE"));
             try{
-                Date = rs.getDate("C_DATE");
+                Date = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss").parse(rs.getString("C_DATE"));
             }
             catch(Exception e){
             }

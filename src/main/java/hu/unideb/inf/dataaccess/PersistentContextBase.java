@@ -38,7 +38,7 @@ public abstract class PersistentContextBase {
     public abstract void DeleteOrderItemById(int id);
 
     public abstract List<Booking> GetActiveBookings();
-    
+
     public abstract List<OrderItem> GetOrderItemsByOrderId(int orderId);
 
     public abstract void Dispose();
