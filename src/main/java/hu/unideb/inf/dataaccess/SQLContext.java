@@ -60,8 +60,7 @@ public class SQLContext extends PersistentContextBase{
             {
                 var rs = stmnt.executeQuery(query);
                 if(rs.next()){
-                    var user = new User().Map(rs);
-                    return user.Name.equals(username) && user.Password.equals(password);
+                    return new User().Map(rs).Id != 0;
                 }
                 else return false;
             }
@@ -132,6 +131,26 @@ public class SQLContext extends PersistentContextBase{
             return null;
         }
         return null;
+    }
+    
+    @Override
+    public List<OrderItem> GetOrderItemsByOrderId(int orderId) {
+        ArrayList<OrderItem> result = new ArrayList<OrderItem>();
+        try {
+            var stmnt = CreateStatement();
+            String query = "select * from T_ORDERITEMS where C_ORDERID = "+orderId;
+            if(stmnt != null){
+                var rs = stmnt.executeQuery(query);
+                while (rs.next()) {
+                    result.add(new OrderItem().Map(rs));
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            return null;
+        }
+        return result;
     }
 
     @Override
@@ -333,8 +352,10 @@ public class SQLContext extends PersistentContextBase{
         try {
             var stmnt = CreateStatement();
             String query = String.format(
-                    "update T_BOOKINGS set C_STATE = %d, where C_ID = %d",
+                    "update T_BOOKINGS set C_NAME = '%s', C_STATE = %d, C_TABLE = %d where C_ID = %d",
+                    newValues.Name,
                     BookingState.toInt(newValues.State),
+                    newValues.Table,
                     newValues.Id);
             if(stmnt != null){
                 stmnt.executeUpdate(query);
