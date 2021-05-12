@@ -60,7 +60,8 @@ public class SQLContext extends PersistentContextBase{
             {
                 var rs = stmnt.executeQuery(query);
                 if(rs.next()){
-                    return new User().Map(rs).Id != 0;
+                    var user = new User().Map(rs);
+                    return user.Name.equals(username) && user.Password.equals(password);
                 }
                 else return false;
             }
